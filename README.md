@@ -34,3 +34,7 @@ La galleria desktop segue lo scorrimento con una scena sticky, avvicinamento e r
 ## Demo Spazio
 Il sito apre con la presentazione personale e poi mostra i progetti. Il pannello Spazio apre un dialog nativo con transizione visiva (quando supportata), demo interattiva e descrizione del progetto. La bacheca permette creazione, ricerca, filtro, eliminazione e cambio di stato con trascinamento o menu. Le attività vengono salvate in localStorage; non vengono inviate a server. Ripristina esempio riporta la bacheca ai dati iniziali. Il backend .NET/PostgreSQL è solo un'ipotesi di evoluzione.
 
+
+## Progetti online
+CookieMakers / My Cookie Delight e Cali al Sole sono presentati con anteprime locali in WebP e collegamenti ai siti originali. Le descrizioni derivano dalle pagine pubbliche. Lo stack CookieMakers è verificato dal package.json della repository; WordPress è verificato negli asset pubblici di Cali al Sole. Le immagini sono screenshot delle homepage, non ricostruzioni. La galleria consente di scegliere tra questi due siti e la demo Spazio.
+
