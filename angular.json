@@ -26,7 +26,8 @@
               "fonts": false,
               "scripts": true,
               "styles": true
-            }
+            },
+            "outputHashing": "all"
           }
         },
         "serve": {
@@ -39,3 +40,4 @@
     }
   }
 }
+
