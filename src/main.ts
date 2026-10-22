@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, computed, HostListener, OnDestroy, signal } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, computed, inject, HostListener, OnDestroy, signal } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 
 type TaskState = 'Da fare' | 'In corso' | 'Completate';
@@ -39,6 +39,7 @@ interface DemoTask { id: string; title: string; tag: string; state: TaskState; d
 </div>
 `})
 class App implements AfterViewInit, OnDestroy {
+ private readonly cdr=inject(ChangeDetectorRef);
 
  readonly states: TaskState[]=['Da fare','In corso','Completate'];
  demoOpen=signal(false); projectView=signal<'demo'|'details'>('demo'); showTaskForm=signal(false);
@@ -56,7 +57,7 @@ class App implements AfterViewInit, OnDestroy {
  ];}
  private loadDemo():DemoTask[]{try{const raw=localStorage.getItem(this.storageKey);if(!raw)return this.sampleTasks();const data:unknown=JSON.parse(raw);if(!Array.isArray(data)||data.length>200)throw Error('Invalid data');const valid=data.every(t=>t&&typeof t.id==='string'&&typeof t.title==='string'&&t.title.length>0&&t.title.length<=90&&typeof t.tag==='string'&&t.tag.length<=30&&['Da fare','In corso','Completate'].includes(t.state)&&typeof t.due==='string'&&(!t.due||/^\d{4}-\d{2}-\d{2}$/.test(t.due)));if(!valid||new Set(data.map(t=>t.id)).size!==data.length)throw Error('Invalid data');return data as DemoTask[];}catch{this.storageAvailable.set(false);return this.sampleTasks();}}
  private saveDemo(){try{localStorage.setItem(this.storageKey,JSON.stringify(this.demoTasks()));this.storageAvailable.set(true);}catch{this.storageAvailable.set(false);}}
- private transition(update:()=>void){const doc=document as Document & {startViewTransition?:(callback:()=>Promise<void>)=>{finished:Promise<void>}};if(doc.startViewTransition&&!matchMedia('(prefers-reduced-motion: reduce)').matches){const result=doc.startViewTransition(async()=>{update();await new Promise<void>(resolve=>requestAnimationFrame(()=>resolve()));});void result.finished.catch(()=>{});}else update();}
+ private transition(update:()=>void){const doc=document as Document & {startViewTransition?:(callback:()=>Promise<void>)=>{finished:Promise<void>}};if(doc.startViewTransition&&!matchMedia('(prefers-reduced-motion: reduce)').matches){const result=doc.startViewTransition(async()=>{update();this.cdr.detectChanges();});void result.finished.catch(()=>{});}else update();}
  openDemo(event?:Event){event?.preventDefault();if(this.demoOpen())return;this.lastFocus=document.activeElement as HTMLElement;this.oldOverflow=document.body.style.overflow;this.projectView.set('demo');this.transition(()=>{this.demoOpen.set(true);document.body.style.overflow='hidden';document.querySelector<HTMLDialogElement>('.project-dialog')?.showModal();});}
  closeDemo(event?:Event){event?.preventDefault();this.transition(()=>document.querySelector<HTMLDialogElement>('.project-dialog')?.close());}
  afterDemoClosed(){this.demoOpen.set(false);document.body.style.overflow=this.oldOverflow;this.showTaskForm.set(false);this.lastFocus?.focus({preventScroll:true});}
@@ -103,5 +104,6 @@ class App implements AfterViewInit, OnDestroy {
  async copyEmail(){try{await navigator.clipboard.writeText('gioelevalori998@gmail.com');this.copied.set(true);setTimeout(()=>this.copied.set(false),3000);}catch{location.href='mailto:gioelevalori998@gmail.com';}}
 }
 bootstrapApplication(App).catch(console.error);
+
 
 
