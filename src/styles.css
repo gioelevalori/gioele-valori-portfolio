@@ -137,3 +137,17 @@
 @media(max-width:1100px){.services-grid{grid-template-columns:1fr}.guarantees-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:650px){.guarantees-grid{grid-template-columns:1fr}.browser-bar{height:32px;padding:0 10px}.browser-dots{gap:4px}.b-dot{width:7px;height:7px}.browser-url{font-size:8px;height:18px}.real-site-label,.screenshot-link{font-size:8px;padding:6px 10px;bottom:10px;right:10px}}
 
+
+/* Compact mobile navigation with a normal document-flow disclosure. */
+.menu-toggle{display:none}
+@media(max-width:800px){
+ header{position:relative;left:auto;right:auto;top:auto;min-height:88px;padding:16px 0;gap:12px;height:auto}
+ header .theme{margin-left:auto}
+ .menu-toggle{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;padding:0 4px 0 10px;border:0;background:transparent;font-size:13px}
+ .menu-toggle[aria-expanded=true]{color:var(--accent)}
+ header nav{display:none}
+ header nav.mobile-open{display:flex;flex-direction:column;align-items:stretch;gap:0;order:4;width:100%;margin:12px 0 0;padding:8px 0 4px;border-top:1px solid var(--line)}
+ header nav a{font:500 25px/1.3 Manrope,sans-serif;letter-spacing:-.025em;min-height:62px;padding:12px 0;color:var(--fg);border-bottom:1px solid var(--line)}
+ header nav a:last-child{color:var(--accent);border-bottom:0}
+ .personal-intro{padding-top:48px;min-height:calc(100svh - 88px);justify-content:center}
+}
