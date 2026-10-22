@@ -30,3 +30,7 @@ L’apertura usa un pannello HTML/CSS in prospettiva, con movimento al puntatore
 
 La galleria desktop segue lo scorrimento con una scena sticky, avvicinamento e rotazione del pannello. Il link Salta al profilo evita la sequenza. Il browser mantiene scorrimento nativo e supporto alla tastiera. Su mobile e con prefers-reduced-motion la sequenza estesa è disattivata.
 
+
+## Demo Spazio
+Il sito apre con la presentazione personale e poi mostra i progetti. Il pannello Spazio apre un dialog nativo con transizione visiva (quando supportata), demo interattiva e descrizione del progetto. La bacheca permette creazione, ricerca, filtro, eliminazione e cambio di stato con trascinamento o menu. Le attività vengono salvate in localStorage; non vengono inviate a server. Ripristina esempio riporta la bacheca ai dati iniziali. Il backend .NET/PostgreSQL è solo un'ipotesi di evoluzione.
+
