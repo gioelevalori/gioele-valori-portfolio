@@ -1,1 +1,17 @@
-<!doctype html><html lang="it"><head><meta charset="utf-8"><title>Gioele Valori â€” Full-Stack Developer | Siti Web & Applicazioni su Misura</title><base href="/"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Gioele Valori â€” Full-Stack Developer Angular e C#/.NET. Realizzo siti web moderni, piattaforme scalabili e applicazioni web su misura per aziende e professionisti."><meta name="theme-color" content="#111413"><link rel="icon" type="image/svg+xml" href="favicon.svg"></head><body><app-root></app-root></body></html>
+<!doctype html><html lang="it"><head><meta charset="utf-8"><title>Gioele Valori â€” Full-Stack Developer | Siti Web & Applicazioni su Misura</title><base href="/"><script>
+// A refresh starts the portfolio at its introduction; direct links keep their section.
+if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
+  const previousRestoration = history.scrollRestoration;
+  history.scrollRestoration = 'manual';
+  history.replaceState(history.state, '', location.pathname + location.search);
+  const resetScroll = () => window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  resetScroll();
+  window.addEventListener('load', () => {
+    resetScroll();
+    requestAnimationFrame(() => {
+      resetScroll();
+      history.scrollRestoration = previousRestoration;
+    });
+  }, { once: true });
+}
+</script><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Gioele Valori â€” Full-Stack Developer Angular e C#/.NET. Realizzo siti web moderni, piattaforme scalabili e applicazioni web su misura per aziende e professionisti."><meta name="theme-color" content="#111413"><link rel="icon" type="image/svg+xml" href="favicon.svg"></head><body><app-root></app-root></body></html>

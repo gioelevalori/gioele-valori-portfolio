@@ -198,3 +198,6 @@ An original, open-stroke GV monogram replaces the text gv. mark in the header, f
 
 ### Scroll chapters
 Services, profile, experience and skills pair a sticky left title with a flowing right narrative above 900px. Mobile stacks each chapter naturally. One-shot heading cuts introduce chapters; service and job entries arrive laterally, while profile paragraphs and skill groups enter quietly. Content is visible by default; reduced motion suppresses all arrivals. A thin fixed reading indicator tracks native document scroll. No scroll interception, extra scroll distance or motion dependency.
+
+### Refresh behavior
+A real browser reload clears the section fragment and starts at the introduction, before Angular initializes. Fresh direct section links and browser back/forward navigation retain native behavior. Scroll restoration is disabled only during reload initialization, then restored.
