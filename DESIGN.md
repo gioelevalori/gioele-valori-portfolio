@@ -194,4 +194,4 @@ Preserve the skip link and 2px current-color focus outlines offset 5px. Workspac
 - **Don't** translate stored state keys or overwrite user-entered task titles when switching language.
 - **Don't** treat the source record as a font license or certify unfinished numeric fidelity gates.
 ### Personal monogram
-An original, open-stroke GV monogram replaces the text gv. mark in the header, footer and SVG favicon. The hero uses five offset impressions of this same signature instead of the decorative rosette. Slow breathing separates the impressions; reduced motion preserves a static print. All on-page marks inherit the foreground color in either theme. Neue Montreal body and sentence-case headings remain unchanged.
+An original, open-stroke GV monogram replaces the text gv. mark in the header, footer and SVG favicon. The hero uses two original folded, extruded code chevrons instead of the monogram. Opposite-phase vertical movement animates the faceted shape; reduced motion preserves a static composition. All on-page marks inherit the foreground color in either theme. Neue Montreal body and sentence-case headings remain unchanged.

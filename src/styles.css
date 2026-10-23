@@ -192,11 +192,9 @@
 .identity:hover .personal-mark,footer .logo:hover .personal-mark{transform:rotate(-7deg)}
 .intro-signature{position:absolute;left:62%;top:13%;width:clamp(180px,23vw,340px);aspect-ratio:1;transform:translateX(-50%) rotate(-12deg);color:var(--fg);isolation:isolate}
 .intro-signature svg{width:100%;height:100%;overflow:visible}
-.signature-layer{transform:translate(calc(var(--layer)*2px),calc(var(--layer)*5px));opacity:calc(1 - var(--layer)*.18);animation:signature-breathe 7s cubic-bezier(.45,0,.55,1) infinite;animation-delay:calc(var(--layer)*-.15s)}
-.signature-layer:first-child{stroke-width:3;opacity:1}
-.intro-signature:hover .signature-layer{animation-play-state:paused}
+.code-wing{animation:code-float 6s cubic-bezier(.45,0,.55,1) infinite;transform-box:fill-box;transform-origin:center}.code-wing-right{animation-delay:-3s}.code-object:hover .code-wing{animation-play-state:paused}
 .personal-intro{padding-bottom:22px}.intro-bottom{margin-top:24px}
-@keyframes signature-breathe{0%,100%{translate:0 0}50%{translate:calc(var(--layer)*1.5px) calc(var(--layer)*-2px)}}
+@keyframes code-float{0%,100%{translate:0 0}50%{translate:0 -10px}}
 @media(max-width:1100px) and (min-width:601px){.intro-signature{left:62%;width:clamp(140px,20vw,220px);top:16%}}
 @media(max-width:600px){.identity,footer .logo{width:49px}.personal-mark{width:49px}.intro-signature{left:auto;right:-8px;top:86px;transform:rotate(-12deg);width:clamp(94px,29vw,150px)}.personal-intro{padding-bottom:8px}.intro-bottom{margin-top:22px;gap:20px}.intro-bottom>p{max-width:40ch}.work-topline{padding-top:14px;padding-bottom:22px}}
-@media(prefers-reduced-motion:reduce){.signature-layer{animation:none}}
+@media(prefers-reduced-motion:reduce){.code-wing{animation:none}}
