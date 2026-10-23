@@ -132,7 +132,13 @@ class App implements AfterViewInit, OnDestroy {
  }
  @HostListener('window:scroll') onScroll(){if(!this.frame)this.frame=requestAnimationFrame(()=>{this.updateScene();this.frame=0;});}
  @HostListener('window:resize') onResize(){this.updateScene();}
- private updateScene(){const reading=document.querySelector<HTMLElement>('.reading-progress');if(reading){const distance=document.documentElement.scrollHeight-innerHeight;reading.style.setProperty('--reading-progress',String(distance>0?Math.max(0,Math.min(1,scrollY/distance)):0));}const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;const intro=document.querySelector<HTMLElement>('.intro-title-row');if(intro){const progress=reduced?0:Math.max(0,Math.min(1,-intro.getBoundingClientRect().top/Math.max(1,intro.clientHeight)));intro.style.setProperty('--intro-progress',String(progress));}document.querySelectorAll<HTMLElement>('.project').forEach((project,index)=>{const cover=project.querySelector<HTMLElement>('.project-cover');if(!cover)return;if(reduced||innerWidth<900){cover.style.setProperty('--scroll-shift','0px');cover.style.setProperty('--scroll-turn','0deg');return;}const box=project.getBoundingClientRect();if(box.top>innerHeight*1.3||box.bottom<-innerHeight*.3)return;const progress=Math.max(-1,Math.min(1,(box.top+box.height/2-innerHeight/2)/innerHeight));cover.style.setProperty('--scroll-shift',progress*(index%2?-36:36)+'px');cover.style.setProperty('--scroll-turn',progress*(index%2?-2:2)+'deg');});}
+ private updateScene(){
+   if(CSS.supports('animation-timeline: scroll()'))return;
+   const reading=document.querySelector<HTMLElement>('.reading-progress');
+   if(!reading)return;
+   const distance=document.documentElement.scrollHeight-innerHeight;
+   reading.style.setProperty('--reading-progress',String(distance>0?Math.max(0,Math.min(1,scrollY/distance)):0));
+ }
  tiltCover(event:PointerEvent){if(event.pointerType!=='mouse'||innerWidth<800||matchMedia('(prefers-reduced-motion: reduce)').matches)return;const el=event.currentTarget as HTMLElement;const r=el.getBoundingClientRect();el.style.setProperty('--tilt-x',((event.clientY-r.top)/r.height-.5)*-6+'deg');el.style.setProperty('--tilt-y',((event.clientX-r.left)/r.width-.5)*7+'deg');}
  resetCover(event:PointerEvent){const el=event.currentTarget as HTMLElement;el.style.setProperty('--tilt-x','0deg');el.style.setProperty('--tilt-y','0deg');}
 

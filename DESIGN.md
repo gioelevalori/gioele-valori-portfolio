@@ -201,3 +201,8 @@ Services, profile, experience and skills pair a sticky left title with a flowing
 
 ### Refresh behavior
 A real browser reload clears the section fragment and starts at the introduction, before Angular initializes. Fresh direct section links and browser back/forward navigation retain native behavior. Scroll restoration is disabled only during reload initialization, then restored.
+
+### Motion pacing refinement
+Scroll arrivals use 1.25–1.5-second deceleration with small vertical movement. Text remains visible throughout, without clipping or sideways entry. Hero letters enter over 1.5 seconds without rotation, equally on mobile. Project arrival animates independent scale rather than translate, avoiding a jump when the scroll-driven offset resumes. Name parallax is bounded to 24px and code geometry floats on a 10-second cycle. Controls retain prompt feedback.
+
+Scroll rendering avoids per-frame geometry queries across projects and no longer offsets the name or frames while scrolling. The reading indicator uses a native CSS scroll timeline where supported, with a single-style rAF fallback. Frame hover tilt and one-shot scale arrivals remain independent.
