@@ -198,3 +198,23 @@
 @media(max-width:1100px) and (min-width:601px){.intro-signature{left:62%;width:clamp(140px,20vw,220px);top:16%}}
 @media(max-width:600px){.identity,footer .logo{width:49px}.personal-mark{width:49px}.intro-signature{left:auto;right:-8px;top:86px;transform:rotate(-12deg);width:clamp(94px,29vw,150px)}.personal-intro{padding-bottom:8px}.intro-bottom{margin-top:22px;gap:20px}.intro-bottom>p{max-width:40ch}.work-topline{padding-top:14px;padding-bottom:22px}}
 @media(prefers-reduced-motion:reduce){.code-wing{animation:none}}
+
+/* Editorial chapters: the title holds its place while the story advances. */
+.reading-progress{position:fixed;inset:0 0 auto;height:2px;background:var(--fg);transform:scaleX(var(--reading-progress,0));transform-origin:left;z-index:50;pointer-events:none}
+.section{display:block}.section-label{padding-top:0;margin-bottom:32px}
+.chapter-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8%;align-items:start}
+.chapter-title{position:sticky;top:40px;align-self:start}.chapter-title h2{font-size:clamp(36px,3.8vw,64px);max-width:19ch;line-height:1.13}
+.chapter-title .section-heading{display:block;margin:0}.chapter-title .text-link{margin-top:28px}
+.chapter-body{min-width:0}.chapter-body>.projects-intro,.chapter-body>.services-grid,.chapter-body>.about-columns,.chapter-body>.skill-grid{margin-top:0}
+.chapter-body .about-columns{grid-template-columns:1fr;gap:28px}.chapter-body .about-columns p{font-size:clamp(15px,1.2vw,19px);line-height:1.75;max-width:55ch}
+.chapter-body .service-card{grid-template-columns:1fr;gap:14px}.chapter-body .service-tags{grid-column:1}.chapter-body .service-card h3{font-size:clamp(25px,2.2vw,34px)}
+.chapter-body .service-card:first-child{margin-top:28px}.chapter-body .job:first-child{padding-top:0;border-top:0}.chapter-body .job{padding-block:36px}.chapter-body .skill-grid{gap:32px 24px}
+@media(prefers-reduced-motion:no-preference){
+.chapter-title.is-revealed h2{animation:chapter-cut .85s cubic-bezier(.16,1,.3,1) both}
+:is(.service-card,.job).is-revealed{animation:story-arrival .7s cubic-bezier(.16,1,.3,1) both}
+.about-columns p.is-revealed,.skill-grid article.is-revealed{animation:reading-arrival .65s cubic-bezier(.16,1,.3,1) both}
+@keyframes chapter-cut{from{clip-path:inset(0 0 100% 0);translate:0 22px}to{clip-path:inset(0);translate:0 0}}
+@keyframes story-arrival{from{clip-path:inset(0 8% 0 0);translate:22px 0;opacity:.4}to{clip-path:inset(0);translate:0 0;opacity:1}}
+@keyframes reading-arrival{from{translate:0 18px;opacity:.4}to{translate:0 0;opacity:1}}
+}
+@media(max-width:900px){.chapter-layout{display:block}.chapter-title{position:static;margin-bottom:32px}.chapter-title h2{font-size:clamp(32px,5.5vw,52px);max-width:24ch}.chapter-body .about-columns p{font-size:15px}.chapter-body .service-card{padding-block:26px}.chapter-body .service-card:first-child{margin-top:0}.section-label{margin-bottom:24px}.chapter-body .job{padding-block:28px}}

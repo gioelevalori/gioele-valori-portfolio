@@ -195,3 +195,6 @@ Preserve the skip link and 2px current-color focus outlines offset 5px. Workspac
 - **Don't** treat the source record as a font license or certify unfinished numeric fidelity gates.
 ### Personal monogram
 An original, open-stroke GV monogram replaces the text gv. mark in the header, footer and SVG favicon. The hero uses two original folded, extruded code chevrons instead of the monogram. Opposite-phase vertical movement animates the faceted shape; reduced motion preserves a static composition. All on-page marks inherit the foreground color in either theme. Neue Montreal body and sentence-case headings remain unchanged.
+
+### Scroll chapters
+Services, profile, experience and skills pair a sticky left title with a flowing right narrative above 900px. Mobile stacks each chapter naturally. One-shot heading cuts introduce chapters; service and job entries arrive laterally, while profile paragraphs and skill groups enter quietly. Content is visible by default; reduced motion suppresses all arrivals. A thin fixed reading indicator tracks native document scroll. No scroll interception, extra scroll distance or motion dependency.
