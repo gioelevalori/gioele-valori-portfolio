@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-23T12:02:08Z",
+  "title": "Design System: Montaggio — Gioele Valori",
+  "extensions": {
+    "colorMeta": {
+      "near-black": {
+        "role": "neutral",
+        "displayName": "Near-black"
+      },
+      "off-white": {
+        "role": "primary",
+        "displayName": "Warm off-white"
+      },
+      "workspace-metadata": {
+        "role": "neutral",
+        "displayName": "Readable workspace metadata"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Monumental name",
+        "purpose": "Regular-weight Neue Montreal two-line identity, locally hosted at public/fonts/NeueMontreal-Regular.otf; source record is provenance, not a license."
+      },
+      "body": {
+        "displayName": "Quiet supporting copy",
+        "purpose": "Neue Montreal supporting copy in both Italian and English."
+      }
+    },
+    "shadows": [
+      {
+        "name": "project-frame",
+        "value": "0 20px 60px #0003",
+        "purpose": "Contact-sheet print separation."
+      },
+      {
+        "name": "workspace",
+        "value": "0 25px 100px #0004",
+        "purpose": "Workspace separation inside the modal."
+      },
+      {
+        "name": "task-card",
+        "value": "0 3px 5px #2a2a2a04",
+        "purpose": "Subtle task-card separation."
+      }
+    ],
+    "motion": [
+      {
+        "purpose": "Title letter cut; 650ms at widths of 700px and below.",
+        "value": "850ms cubic-bezier(.16,1,.3,1), 38ms stagger",
+        "name": "letter-entry"
+      },
+      {
+        "purpose": "Role and introduction after 300ms and 500ms.",
+        "value": "700ms cubic-bezier(.16,1,.3,1)",
+        "name": "support-entry"
+      },
+      {
+        "purpose": "Bounded mouse tilt and scroll shift; scroll shift limited to ±36px and rotation ±2° above 900px.",
+        "value": "transform .6s cubic-bezier(.16,1,.3,1), translate .25s linear",
+        "name": "frame-motion"
+      },
+      {
+        "purpose": "Menu choreography when motion is allowed.",
+        "value": "450ms clip-path, link stagger 40ms to 160ms",
+        "name": "menu-reveal"
+      },
+      {
+        "purpose": "Shared project identity transition; disabled in reduced-motion mode.",
+        "value": "750ms cubic-bezier(.16,1,.3,1)",
+        "name": "project-identity"
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "wide-min",
+        "value": "1700px"
+      },
+      {
+        "name": "responsive-max-1100",
+        "value": "1100px"
+      },
+      {
+        "name": "responsive-max-900",
+        "value": "900px"
+      },
+      {
+        "name": "responsive-max-800",
+        "value": "800px"
+      },
+      {
+        "name": "responsive-max-700",
+        "value": "700px"
+      },
+      {
+        "name": "responsive-max-600",
+        "value": "600px"
+      },
+      {
+        "name": "responsive-max-550",
+        "value": "550px"
+      },
+      {
+        "name": "responsive-max-480",
+        "value": "480px"
+      },
+      {
+        "name": "responsive-max-360",
+        "value": "360px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Gallery arrow",
+      "kind": "button",
+      "refersTo": "gallery-button",
+      "description": "Compact project navigation with a 44px hit area; colors inherit the active portfolio theme.",
+      "html": "<button class=\"ds-gallery\" aria-label=\"Progetto successivo\">→</button>",
+      "css": ".ds-gallery{display:grid;place-items:center;width:44px;height:44px;border:1px solid var(--line,#343433);border-radius:50%;background:transparent;color:var(--fg,#f4f2ed);font:20px \"Neue Montreal\",Arial,sans-serif;cursor:pointer;transition:background .2s,color .2s}.ds-gallery:hover{background:var(--fg,#f4f2ed);color:var(--bg,#080808)}.ds-gallery:focus-visible{outline:2px solid currentColor;outline-offset:5px}@media(prefers-reduced-motion:reduce){.ds-gallery{transition:none}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Cinematic contact sheet",
+    "overview": "Monochrome custom GV monogram identity, regular Neue Montreal typography, staggered original project logos and readable case dialogs. Reserved frame spacing supports bounded optional motion. The complete interface supports Italian and English. Numeric pixel-fidelity pipeline remains unverified.",
+    "keyCharacteristics": [
+      "Near-black/off-white gv. identity",
+      "Self-hosted Neue Montreal at regular weight 450",
+      "Original project logos and case screenshots",
+      "Reserved frame spacing and vertical projects below 900px",
+      "Persistent IT/EN interface and accessible local task demo"
+    ],
+    "rules": [
+      {
+        "body": "Keep the black-and-white gv. shell; original project marks retain their colors.",
+        "section": "colors",
+        "name": "Monochrome identity"
+      },
+      {
+        "body": "Neue Montreal 450 governs display and body; the compact logo remains 800.",
+        "section": "typography",
+        "name": "Regular editorial type"
+      },
+      {
+        "body": "Keep project-list gaps and nonnegative margins; reduced motion removes spatial animation.",
+        "section": "elevation",
+        "name": "Reserved motion space"
+      }
+    ],
+    "dos": [
+      "Do preserve original logos, final Neue Montreal rules and nonnegative frame spacing.",
+      "Do keep Italian/English labels, focus handling and reduced-motion behavior complete."
+    ],
+    "donts": [
+      "Do not restore rejected cobalt/coral branding or obsolete condensed headings.",
+      "Do not translate stored canonical task-state keys or user-entered titles.",
+      "Do not certify unfinished numeric pixel-fidelity gates."
+    ]
+  }
+}

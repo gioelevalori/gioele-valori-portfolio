@@ -13,7 +13,8 @@
             "tsConfig": "tsconfig.json",
             "index": "src/index.html",
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/demo.css"
             ],
             "assets": [
               {
@@ -40,4 +41,3 @@
     }
   }
 }
-

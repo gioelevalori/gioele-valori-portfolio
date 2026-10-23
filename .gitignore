@@ -3,3 +3,8 @@ dist/
 .angular/
 .openai/local/
 .openai/
+
+# Generated design previews and verification captures
+.impeccable/build/
+.impeccable/review/
+.impeccable/mocks/

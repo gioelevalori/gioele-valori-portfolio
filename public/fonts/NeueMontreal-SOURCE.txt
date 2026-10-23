@@ -1,0 +1,1 @@
+Typeface: Neue Montreal. Source reference: https://dennissnellenberg.com/assets/css/styleguide.css (CSS alias: Dennis Sans). Font assets obtained from https://dennissnellenberg.com/assets/fonts/ . Typeface rights belong to the original rights holder; this source record is not a license.

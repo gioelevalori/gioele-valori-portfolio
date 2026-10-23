@@ -20,7 +20,7 @@ Il contenuto ruota attorno al percorso reale di Gioele nello sviluppo Angular e 
 
 ## Operating Context
 
-Sito pubblico in italiano, consultabile da desktop e mobile. Il curriculum è scaricabile; i visitatori possono aprire i progetti pubblici e contattare Gioele tramite email o LinkedIn.
+Sito pubblico in italiano e inglese, con selettore IT / EN e scelta ricordata nel browser, consultabile da desktop e mobile. Il curriculum scaricabile resta in italiano, come indicato nella versione inglese; i visitatori possono aprire i progetti pubblici e contattare Gioele tramite email o LinkedIn.
 
 Repository: https://github.com/gioelevalori/gioele-valori-portfolio
 
