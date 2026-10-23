@@ -254,3 +254,45 @@
 .project-body,.project:nth-child(2) .project-body{position:relative;z-index:1;background:var(--bg);padding-block:22px}
 }
 @media(max-width:600px){.about .chapter-body .about-columns p{font-size:21px;line-height:1.6}.about .chapter-body .about-columns{gap:36px}}
+
+/* Real project evidence, framed as editorial desktop and mobile captures. */
+.intro-actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px 24px;margin-top:28px;padding-bottom:22px}
+.intro-actions a{display:inline-flex;justify-content:space-between;align-items:center;gap:28px;min-height:48px;padding:12px 20px;font-size:14px}
+.action-primary{background:var(--fg);color:var(--bg)}.action-secondary{border:1px solid var(--line)}.intro-actions a:hover{outline:1px solid var(--fg);outline-offset:3px}
+.intro-actions p{font-size:13px;line-height:1.6;color:var(--muted);max-width:36ch}
+.visual-cover{aspect-ratio:1.35;isolation:isolate}
+.visual-cover>.cookie-logo-window{position:absolute;left:5%;top:5%;width:27%;z-index:2}
+.visual-cover>img.cali-logo{position:absolute;left:5%;top:4%;width:12%!important;height:17%!important;z-index:2;object-fit:contain}
+app-project-preview{display:block;width:100%;height:100%;min-width:0}
+.preview-composition{position:relative;display:block;width:100%;height:100%;isolation:isolate}
+.preview-desktop{position:absolute;left:6%;bottom:9%;width:77%;display:block;overflow:hidden;background:#fff;color:#262626;box-shadow:0 16px 36px #0003;border:1px solid #8c8c8c45}
+.preview-desktop>img{display:block;width:100%;height:auto;aspect-ratio:1.6;object-fit:cover;object-position:top}
+.preview-chrome{display:flex;align-items:center;gap:4px;height:22px;padding:0 9px;background:#ecece9;color:#62625e;font-size:9px;text-align:center}
+.preview-chrome i{width:4px;height:4px;background:#a2a29d;border-radius:50%}.preview-chrome>span{margin-inline:auto}
+.preview-mobile{position:absolute;right:5%;bottom:5%;width:21%;display:block;background:#111;border:5px solid #222;border-radius:18px;overflow:hidden;box-shadow:0 12px 30px #0004}
+.preview-mobile>img{display:block;width:100%;height:auto;aspect-ratio:390/844;object-fit:cover;object-position:top}
+.preview-speaker{position:absolute;left:32%;right:32%;top:0;height:7px;background:#222;border-radius:0 0 8px 8px;z-index:1}
+.visual-cover .cover-action{z-index:4}.project-role{font-size:13px;line-height:1.65;max-width:32ch;color:var(--muted);margin-top:20px}
+.case-page-link{display:inline-flex;align-items:center;min-height:44px;font-size:13px;border-bottom:1px solid var(--line);margin-top:10px}
+.case-page-link:hover{border-color:var(--fg)}
+.case-visual{aspect-ratio:1.7;background:var(--surface);margin-bottom:44px;overflow:hidden}
+.case-visual .preview-desktop{bottom:8%;width:72%}.case-visual .preview-mobile{width:17%;right:9%}
+.case-role{border-block:1px solid var(--line);padding:28px 0;margin-bottom:36px}.case-role h3,.case-decisions h3{font-size:23px;font-weight:450;margin-bottom:14px}
+.case-role p,.case-decisions p{font-size:15px;line-height:1.75;max-width:65ch;color:var(--muted)}
+.case-decisions{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:44px}
+.experience-proof{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:24px 0;padding:20px 0;border-block:1px solid var(--line)}
+.experience-proof span{font-size:13px}.experience-proof svg{color:var(--muted)}
+.project-position,.tags,.project .tags,.project-availability,.job-date,.section-label,.facts span,.service-tags,.guarantee-card p,.contact-sub{font-size:12px}
+.guarantee-card p{line-height:1.75}.contact-bottom a,.contact-bottom button{font-size:14px}
+@media(min-width:1000px) and (min-height:700px) and (prefers-reduced-motion:no-preference){.project,.project:nth-child(2),.project:nth-child(3){grid-template-columns:minmax(0,30%) minmax(0,1fr);gap:5%;padding-block:28px}.project-summary{margin-top:14px}.project .tags{margin-top:12px}.project-role{margin-top:14px}}
+@media(max-width:600px){.intro-actions{gap:12px;margin-top:22px}.intro-actions a{font-size:13px;padding:12px 16px;gap:20px}.intro-actions p{max-width:none;flex-basis:100%}.project .visual-cover,.project:nth-child(2) .visual-cover{aspect-ratio:1.25}.preview-mobile{border-width:3px;border-radius:12px;width:23%}.preview-chrome{font-size:7px;height:16px;gap:3px;padding:0 5px}.preview-chrome i{width:3px;height:3px}.preview-speaker{height:5px}.case-visual{aspect-ratio:1.25;margin-bottom:28px}.case-visual .preview-desktop{width:77%;left:5%;bottom:12%}.case-visual .preview-mobile{width:22%;right:5%}.case-decisions{grid-template-columns:1fr;gap:26px}.case-role p,.case-decisions p{font-size:14px}.project-role{max-width:42ch}.section-label{font-size:11px}.facts span{line-height:1.6}}
+
+.intro-about,.client-badge,footer{font-size:13px}.intro-about{min-height:44px}.facts strong{overflow-wrap:anywhere}
+
+/* Mobile cards stay in normal flow; no pinned image can escape under its text. */
+@media(max-width:900px){
+.site .project .logo-cover,.site .project:nth-child(2) .logo-cover{position:relative;top:auto;width:100%;align-self:stretch;transform:none;translate:0 0;rotate:0deg;scale:1;animation:none;transition:none}
+.site .project .project-body,.site .project:nth-child(2) .project-body{background:none;padding-inline:0}
+}
+
+@media(max-width:900px){.site .project.reveal-section.is-revealed .project-cover{animation:none}}

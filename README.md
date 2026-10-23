@@ -1,40 +1,42 @@
-# Gioele Valori — Portfolio Angular
+# Gioele Valori — Portfolio
 
-Portfolio responsive in italiano, con tema chiaro/scuro, percorso professionale, competenze, formazione, download CV e contatti.
+Portfolio Angular in italiano e inglese, pubblicato su https://gioelevalori.dev/. Recruiter e clienti hanno la stessa priorità. Tema chiaro/scuro, CV, progetti reali e demo frontend Spazio.
 
-## Avvio
+## Avvio e build
 
-Node.js 22.22.3+ oppure 24.15+ o una versione supportata da Angular 22.
+Usare Node.js 24, come nel workflow GitHub Pages.
 
 ```sh
-npm install
+npm ci
 npm start
+npm run build -- --base-href /
 ```
 
-## Build
+La cartella pubblicata è `dist/portfolio/browser`. Non servono backend o database per il portfolio.
 
-```sh
-npm run build
-```
+## Struttura
 
-Pubblicare la cartella `dist/portfolio/browser` su un hosting statico. Nessun backend o database necessario: il sito non raccoglie dati. Il pulsante contatti apre il client email.
+- `src/main.ts`: bootstrap Angular.
+- `src/app.component.ts` e `src/app.component.html`: logica e template del portfolio.
+- `src/portfolio-data.ts`: progetti, servizi, esperienze e competenze.
+- `src/content/project-studies.json`: contenuti dei casi studio.
+- `src/project-preview.component.ts`: composizione condivisa delle schermate desktop e mobile.
+- `src/translations.ts`: traduzioni inglesi.
+- `src/styles.css` e `src/demo.css`: stile del portfolio e della demo.
+- `scripts/build-case-studies.mjs`: genera le pagine progetto statiche, la sitemap e robots.txt prima di avvio e build.
 
-I contenuti provengono dal CV fornito. I riferimenti visivi sono Brittany Chiang e Bruno Simon, consultati anche nella raccolta https://github.com/emmabostian/developer-portfolios; il layout e il codice sono originali. Nessun progetto o risultato commerciale inventato.
+## Casi studio
 
-Per modificare contenuti e contatti: `src/main.ts`. Per il design: `src/styles.css`. Il PDF originale è in `public/`.
+CookieMakers e Cali al Sole hanno pagine autonome sotto `/progetti/` e `/en/projects/`, complete di HTML leggibile senza JavaScript, canonical, hreflang e dati strutturati. Le descrizioni tecniche sono condivise con il portfolio. I file HTML generati in `public/` vengono aggiornati automaticamente da start e build.
 
+Il cliente ha fornito l’idea; Gioele ha realizzato entrambi i progetti da solo, come confermato dall’autore. Le immagini in `public/projects/` sono schermate reali, accompagnate da registrazioni della provenienza. CookieMakers rimanda anche al repository pubblico. Non sono riportate metriche di conversione o risultati commerciali non verificati.
 
-## Galleria portfolio
-L’apertura usa un pannello HTML/CSS in prospettiva, con movimento al puntatore su desktop. La bacheca Spazio è un’anteprima illustrativa cliccabile che porta alla descrizione del concept; non è un’applicazione gestionale. Su mobile il pannello è frontale. Il movimento rispetta prefers-reduced-motion.
-
-
-La galleria desktop segue lo scorrimento con una scena sticky, avvicinamento e rotazione del pannello. Il link Salta al profilo evita la sequenza. Il browser mantiene scorrimento nativo e supporto alla tastiera. Su mobile e con prefers-reduced-motion la sequenza estesa è disattivata.
-
+La homepage resta renderizzata sul client Angular; le pagine progetto sono statiche. I metadati della homepage includono canonical, Open Graph, social card e dati Person. Il curriculum resta in italiano anche quando si seleziona English.
 
 ## Demo Spazio
-Il sito apre con la presentazione personale e poi mostra i progetti. Il pannello Spazio apre un dialog nativo con transizione visiva (quando supportata), demo interattiva e descrizione del progetto. La bacheca permette creazione, ricerca, filtro, eliminazione e cambio di stato con trascinamento o menu. Le attività vengono salvate in localStorage; non vengono inviate a server. Ripristina esempio riporta la bacheca ai dati iniziali. Il backend .NET/PostgreSQL è solo un'ipotesi di evoluzione.
 
+Demo frontend con ricerca, creazione, filtro, eliminazione e cambio di stato delle attività. I dati restano nel localStorage del browser. API .NET e PostgreSQL rappresentano un’eventuale evoluzione, non funzionalità implementate.
 
-## Progetti online
-CookieMakers / My Cookie Delight e Cali al Sole sono presentati con anteprime locali in WebP e collegamenti ai siti originali. Le descrizioni derivano dalle pagine pubbliche. Lo stack CookieMakers è verificato dal package.json della repository; WordPress è verificato negli asset pubblici di Cali al Sole. Le immagini sono screenshot delle homepage, non ricostruzioni. La galleria consente di scegliere tra questi due siti e la demo Spazio.
+## Movimento e navigazione
 
+Lo scroll resta nativo. I progetti possono sovrapporsi su desktop, mentre il profilo usa timeline CSS progressive. L’opzione di sistema per le animazioni ridotte mantiene una lettura statica. Le schede progetto usano dialog nativi con gestione di focus ed Escape; i casi studio hanno anche URL propri. Un refresh della homepage riparte dalla presentazione, mentre link diretti alle sezioni e tasto Indietro mantengono il comportamento nativo.

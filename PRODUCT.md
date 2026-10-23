@@ -24,7 +24,7 @@ Sito pubblico in italiano e inglese, con selettore IT / EN e scelta ricordata ne
 
 Repository: https://github.com/gioelevalori/gioele-valori-portfolio
 
-Sito pubblicato: https://gioelevalori.github.io/gioele-valori-portfolio/
+Sito pubblicato: https://gioelevalori.dev/
 
 ## Capabilities and Constraints
 
@@ -42,7 +42,7 @@ Identità personale: Gioele Valori. Tono italiano diretto, personale e concreto.
 ## Evidence on Hand
 
 - Curriculum fornito dall'utente: `public/GioeleValoriCurriculum.pdf`.
-- Contenuti implementati: `src/main.ts`; stili esistenti: `src/styles.css`.
+- Contenuti implementati: `src/app.component.html`, `src/app.component.ts`, `src/portfolio-data.ts`; stili esistenti: `src/styles.css`.
 - Screenshot dei siti reali: `public/projects/cookiemakers.webp` e `public/projects/cali-al-sole.webp`.
 - LinkedIn fornito dall'utente: https://www.linkedin.com/in/gioelevalori/
 - Email pubblicata: gioelevalori998@gmail.com.
@@ -54,3 +54,7 @@ Identità personale: Gioele Valori. Tono italiano diretto, personale e concreto.
 2. Rendere verificabili le capacità tramite lavori accessibili e descrizioni precise.
 3. Preservare la distinzione tra progetti reali, demo e possibilità future.
 4. Usare il percorso e la voce di Gioele come fonte dei contenuti.
+
+## Project responsibility confirmed
+
+Gioele ha confermato che, sia per CookieMakers sia per Cali al Sole, il cliente ha fornito l’idea e lui ha curato da solo la realizzazione. I casi studio descrivono questa responsabilità senza metriche o difficoltà tecniche inventate.

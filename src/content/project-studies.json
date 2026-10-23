@@ -1,0 +1,28 @@
+[
+  {
+    "slug": "cookiemakers",
+    "name": "CookieMakers",
+    "subtitle": "Un’idea da personalizzare, prima ancora di ordinarla.",
+    "problem": "Permettere al cliente di vedere come sarà un biscotto personalizzato, prima di proseguire con la richiesta.",
+    "approach": "Un configuratore Angular collega forma, dedica, immagini e colori a un’anteprima Three.js. Galleria, eventi e carrello fanno parte dello stesso percorso.",
+    "result": "Un’esperienza interattiva che rende visibili le scelte di personalizzazione.",
+    "focus": [
+      "Configuratore e anteprima 3D",
+      "Navigazione e flusso di personalizzazione",
+      "Interfaccia Angular Material"
+    ]
+  },
+  {
+    "slug": "cali-al-sole",
+    "name": "Cali al Sole",
+    "subtitle": "Dare una casa digitale all’Endurance Battle.",
+    "problem": "Riunire identità dell’evento, informazioni sulla gara, edizioni e contatti in un sito consultabile anche dal telefono.",
+    "approach": "Un sito WordPress con apertura video, contenuti sulla competizione, categorie, domande frequenti, mappa e collegamenti social.",
+    "result": "Un punto di accesso alle informazioni dell’evento e ai contatti degli organizzatori.",
+    "focus": [
+      "Progettazione dell’interfaccia",
+      "Sviluppo e configurazione WordPress",
+      "Organizzazione di contenuti e navigazione"
+    ]
+  }
+]
