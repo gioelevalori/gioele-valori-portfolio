@@ -217,3 +217,6 @@ Angular bootstrap, main template, application logic, portfolio data and the prev
 
 ### Mobile overlap correction
 Below 900px project covers remain untransformed in normal flow, at full available width; they no longer stick or reveal slivers behind later text. The desktop contact sheet remains. The redundant enlarged logo stage is removed from the real-project dialogs; the shared transition now opens directly into real desktop/mobile screenshots, avoiding opaque logo rectangles altogether. Logos remain on the overview covers.
+
+### Image proportion and quality correction
+Project images are recaptured as lossless PNG at 1x and 2x, selected through srcset. Desktop and mobile frames sit beside one another with intrinsic image height, without overlapping or forced crop ratios. The personal GV logo, custom favicon and added project-logo overlays are removed for now; navigation uses a small plain-text personal name. The social card also omits the monogram.

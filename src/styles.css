@@ -296,3 +296,14 @@ app-project-preview{display:block;width:100%;height:100%;min-width:0}
 }
 
 @media(max-width:900px){.site .project.reveal-section.is-revealed .project-cover{animation:none}}
+
+/* Preserve every screenshot's full viewport and native ratio. */
+.site .identity{width:auto;font:450 14px/1.3 'Neue Montreal',Arial,sans-serif;letter-spacing:-.02em;min-height:44px}.plain-identity{color:var(--fg)}
+.site .visual-cover,.site .project:nth-child(2) .visual-cover{aspect-ratio:auto;display:block;background:var(--surface);overflow:visible}
+.preview-composition{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.23fr);align-items:center;gap:5%;padding:6%;height:auto;min-height:0}
+.preview-desktop,.case-visual .preview-desktop{position:relative;left:auto;bottom:auto;width:100%;min-width:0;box-shadow:0 10px 24px #0002}
+.preview-mobile,.case-visual .preview-mobile{position:relative;right:auto;bottom:auto;width:100%;min-width:0;box-shadow:0 8px 20px #0003;border-radius:14px}
+.preview-desktop>img,.preview-mobile>img{width:100%;height:auto;aspect-ratio:auto;object-fit:contain;object-position:center}
+.case-visual{aspect-ratio:auto;overflow:visible}.case-visual app-project-preview{height:auto}
+.preview-speaker{display:none}
+@media(max-width:600px){.site .identity{font-size:12px;max-width:66px}.preview-composition{gap:4%;padding:5%;grid-template-columns:minmax(0,1fr) minmax(0,.24fr)}.preview-mobile,.case-visual .preview-mobile{border-radius:8px;border-width:2px}.site .project .visual-cover,.site .project:nth-child(2) .visual-cover{aspect-ratio:auto}.case-visual{aspect-ratio:auto}.preview-desktop,.case-visual .preview-desktop{width:100%;left:auto;bottom:auto}.preview-mobile,.case-visual .preview-mobile{width:100%;right:auto;bottom:auto}}
