@@ -226,3 +226,31 @@
 .reading-progress{animation:reading-track linear both;animation-timeline:scroll(root block)}
 @keyframes reading-track{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 }
+
+/* A native scroll-controlled contact sheet: each project becomes the next scene. */
+@media(min-width:1000px) and (min-height:700px) and (prefers-reduced-motion:no-preference){
+.project-list{gap:0;isolation:isolate}
+.project,.project:nth-child(2),.project:nth-child(3){position:sticky;top:24px;min-height:calc(100svh - 48px);margin:0;padding:48px 0;grid-template-columns:minmax(0,30%) minmax(0,1fr);gap:6%;background:var(--bg);border-top:1px solid var(--line);align-items:center}
+.project:nth-child(2) .project-body{grid-column:1;padding-left:0}.project:nth-child(2) .project-cover{grid-column:2}
+.project .logo-cover{--angle:0deg;box-shadow:none;animation:none}
+.project-list:has(:focus-visible) .project{position:relative}.project:has(details[open]){position:relative}
+.project-body{padding-block:8px}.project h3{font-size:clamp(36px,3.8vw,60px)}
+.project:nth-child(2){box-shadow:0 -25px 65px #0005}.project:nth-child(3){box-shadow:0 -25px 65px #0005}
+}
+@supports(animation-timeline:view()){
+@media(prefers-reduced-motion:no-preference){
+.scroll-reading{view-timeline-name:--reading-scene;view-timeline-axis:block}
+.scroll-word{color:var(--muted);animation:word-ink linear both;animation-timeline:--reading-scene;animation-range-start:cover var(--word-start);animation-range-end:cover var(--word-end)}
+@keyframes word-ink{from{color:var(--muted)}to{color:var(--fg)}}
+.about-columns p.is-revealed{animation:none}
+.project{view-timeline-name:--project-scene;view-timeline-axis:block}
+.project .logo-cover{animation:scene-depth linear both;animation-timeline:--project-scene;animation-range:entry 0% entry 100%}
+@keyframes scene-depth{from{scale:.91;rotate:-2deg}to{scale:1;rotate:0deg}}
+}
+}
+.about .chapter-body .about-columns p{font-size:clamp(20px,1.8vw,29px);line-height:1.6;letter-spacing:-.02em}
+@media(max-width:900px) and (prefers-reduced-motion:no-preference){
+.project{isolation:isolate}.project .logo-cover{position:sticky;top:18px;z-index:0}
+.project-body,.project:nth-child(2) .project-body{position:relative;z-index:1;background:var(--bg);padding-block:22px}
+}
+@media(max-width:600px){.about .chapter-body .about-columns p{font-size:21px;line-height:1.6}.about .chapter-body .about-columns{gap:36px}}
