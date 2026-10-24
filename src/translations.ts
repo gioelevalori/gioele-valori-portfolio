@@ -217,4 +217,9 @@ export const ENGLISH: Record<string, string> = {
 "Sviluppo backend C#/.NET, API e integrazione dei dati in continuità con l’interfaccia Angular.": "I develop C#/.NET backends, APIs and data integrations that work with the Angular interface.",
 "Lavoriamo": "Let’s work",
 "insieme.": "together.",
+"Cosa ho realizzato": "What I built",
+"Il risultato": "The outcome",
+"Esplora il codice": "Explore the code",
+"Un progetto o un’opportunità da condividere?": "Have a project or opportunity in mind?",
+"Scrivimi": "Get in touch",
 };

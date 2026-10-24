@@ -220,3 +220,6 @@ Below 900px project covers remain untransformed in normal flow, at full availabl
 
 ### Image proportion and quality correction
 Project images are recaptured as lossless PNG at 1x and 2x, selected through srcset. Desktop and mobile frames sit beside one another with intrinsic image height, without overlapping or forced crop ratios. The personal GV logo, custom favicon and added project-logo overlays are removed for now; navigation uses a small plain-text personal name. The social card also omits the monogram.
+
+### Uniform images and SPA navigation
+Every project uses the same 16:10 outer canvas and shared desktop/mobile grid, with intrinsic screenshot proportions and matching margins. The two real project rows share the same column widths. Homepage, Italian case studies and English case studies are now Angular routed views in one SPA. Internal RouterLink navigation does not request a new document; direct URLs and refreshes load the same Angular entry shell with route-specific head metadata. GitHub Pages entry shells and a 404 shell are emitted after the Angular build. The former standalone static study documents are removed. Router scroll restoration owns backward navigation, and leaving a modal for a study page releases body scroll locking.

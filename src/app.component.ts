@@ -1,3 +1,4 @@
+import { RouterLink } from '@angular/router';
 import { PROJECTS, SERVICES, GUARANTEES, JOBS, SKILLS } from './portfolio-data';
 import { ENGLISH } from './translations';
 import { AfterViewInit, ChangeDetectorRef, Component, computed, inject, HostListener, OnDestroy, signal } from '@angular/core';
@@ -7,10 +8,10 @@ import STUDIES from './content/project-studies.json';
 type TaskState = 'Da fare' | 'In corso' | 'Completate';
 interface DemoTask { id: string; title: string; tag: string; state: TaskState; due: string; }
 
-@Component({selector:'app-root',standalone:true,imports:[ProjectPreviewComponent],templateUrl:'./app.component.html'})
+@Component({selector:'app-home',standalone:true,imports:[ProjectPreviewComponent,RouterLink],templateUrl:'./app.component.html'})
 export class App implements AfterViewInit, OnDestroy {
  studies=STUDIES;
- studyUrl(index:number){return (this.language()==='en'?'en/projects/':'progetti/')+this.studies[index].slug+'/';}
+ studyUrl(index:number){return (this.language()==='en'?'/en/projects/':'/progetti/')+this.studies[index].slug+'/';}
  language=signal<'it'|'en'>(this.loadLanguage());
  private loadLanguage():'it'|'en'{const requested=new URLSearchParams(location.search).get('lang');if(requested==='it'||requested==='en')return requested;try{return localStorage.getItem('gv-portfolio-language')==='en'?'en':'it';}catch{return 'it';}}
  setLanguage(language:'it'|'en'){this.language.set(language);const url=new URL(location.href);if(url.searchParams.has('lang')){url.searchParams.set('lang',language);history.replaceState(history.state,'',url);} try{localStorage.setItem('gv-portfolio-language',language);}catch{}this.updateLanguageMetadata();}
@@ -22,6 +23,14 @@ export class App implements AfterViewInit, OnDestroy {
    for(const selector of ['meta[name="description"]','meta[property="og:description"]','meta[name="twitter:description"]'])document.querySelector(selector)?.setAttribute('content',description);
    for(const selector of ['meta[property="og:title"]','meta[name="twitter:title"]'])document.querySelector(selector)?.setAttribute('content',title);
    document.querySelector('meta[property="og:locale"]')?.setAttribute('content',english?'en_GB':'it_IT');
+   document.querySelector('link[rel="canonical"]')?.setAttribute('href','https://gioelevalori.dev/');
+   document.querySelector('meta[property="og:url"]')?.setAttribute('content','https://gioelevalori.dev/');
+   for(const selector of ['meta[property="og:image"]','meta[name="twitter:image"]'])document.querySelector(selector)?.setAttribute('content','https://gioelevalori.dev/social-card.png');
+   document.querySelector('meta[property="og:type"]')?.setAttribute('content','website');
+   document.querySelector('meta[property="og:image:width"]')?.setAttribute('content','1200');document.querySelector('meta[property="og:image:height"]')?.setAttribute('content','630');
+   document.querySelector('meta[property="og:image:alt"]')?.setAttribute('content','Gioele Valori — Angular e C#/.NET');
+   document.querySelectorAll('link[rel="alternate"][hreflang]').forEach(el=>el.remove());
+   const structured=document.querySelector('script[type="application/ld+json"]');if(structured)structured.textContent=JSON.stringify({'@context':'https://schema.org','@type':'Person',name:'Gioele Valori',url:'https://gioelevalori.dev/',jobTitle:'Full-Stack Developer',sameAs:['https://www.linkedin.com/in/gioelevalori/']});
  }
 
  t(value:unknown):string{const text=value==null?'':String(value);if(this.language()==='it')return text;const exact=ENGLISH[text];if(exact!==undefined)return exact;for(const [it,en]of [['Attività aggiunta: ','Task added: '],['Elimina attività: ','Delete task: '],['Stato di ','Status of '],['Scadenza · ','Due · '],['Scopri ','Explore '],['Screenshot del sito ','Screenshot of '],['Un’anteprima del sito ','A preview of ']]){if(text.startsWith(it))return en+text.slice(it.length);}if(text.startsWith('Attività spostata in '))return 'Task moved to '+this.t(text.slice('Attività spostata in '.length,-1))+'.';return text;}
@@ -95,7 +104,7 @@ export class App implements AfterViewInit, OnDestroy {
  tiltCover(event:PointerEvent){if(event.pointerType!=='mouse'||innerWidth<800||matchMedia('(prefers-reduced-motion: reduce)').matches)return;const el=event.currentTarget as HTMLElement;const r=el.getBoundingClientRect();el.style.setProperty('--tilt-x',((event.clientY-r.top)/r.height-.5)*-6+'deg');el.style.setProperty('--tilt-y',((event.clientX-r.left)/r.width-.5)*7+'deg');}
  resetCover(event:PointerEvent){const el=event.currentTarget as HTMLElement;el.style.setProperty('--tilt-x','0deg');el.style.setProperty('--tilt-y','0deg');}
 
- ngOnDestroy(){if(this.frame)cancelAnimationFrame(this.frame);this.revealObserver?.disconnect();}
+ ngOnDestroy(){if(this.caseOpen()||this.demoOpen())document.body.style.overflow=this.oldOverflow;if(this.frame)cancelAnimationFrame(this.frame);this.revealObserver?.disconnect();}
 
  turn=signal(-13); lift=signal(3);
  movePanel(event: PointerEvent){if(event.pointerType !== 'mouse' || matchMedia('(prefers-reduced-motion: reduce)').matches || innerWidth < 1000) return; const rect=(event.currentTarget as HTMLElement).getBoundingClientRect(); this.turn.set(-13+((event.clientX-rect.left)/rect.width-.5)*5);this.lift.set(3-((event.clientY-rect.top)/rect.height-.5)*3);}

@@ -10,7 +10,7 @@ if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
     resetScroll();
     requestAnimationFrame(() => {
       resetScroll();
-      history.scrollRestoration = previousRestoration;
+      history.scrollRestoration = document.querySelector('router-outlet') ? 'manual' : previousRestoration;
     });
   }, { once: true });
 }

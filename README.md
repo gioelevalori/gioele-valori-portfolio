@@ -23,15 +23,20 @@ La cartella pubblicata è `dist/portfolio/browser`. Non servono backend o databa
 - `src/project-preview.component.ts`: composizione condivisa delle schermate desktop e mobile.
 - `src/translations.ts`: traduzioni inglesi.
 - `src/styles.css` e `src/demo.css`: stile del portfolio e della demo.
-- `scripts/build-case-studies.mjs`: genera le pagine progetto statiche, la sitemap e robots.txt prima di avvio e build.
+- `scripts/build.mjs` e `scripts/build-route-shells.mjs`: compilazione e preparazione degli entry point SPA per GitHub Pages.
 
-## Casi studio
+## Casi studio e SPA
 
-CookieMakers e Cali al Sole hanno pagine autonome sotto `/progetti/` e `/en/projects/`, complete di HTML leggibile senza JavaScript, canonical, hreflang e dati strutturati. Le descrizioni tecniche sono condivise con il portfolio. I file HTML generati in `public/` vengono aggiornati automaticamente da start e build.
+Homepage e casi studio sono viste della stessa SPA Angular, gestite da `@angular/router`. I collegamenti interni usano RouterLink: apertura, cambio lingua e ritorno al portfolio non ricaricano il documento. Gli URL `/progetti/:slug` e `/en/projects/:slug` restano condivisibili.
 
-Il cliente ha fornito l’idea; Gioele ha realizzato entrambi i progetti da solo, come confermato dall’autore. Le immagini in `public/projects/` sono schermate reali, accompagnate da registrazioni della provenienza. CookieMakers rimanda anche al repository pubblico. Non sono riportate metriche di conversione o risultati commerciali non verificati.
+- `src/main.ts`: shell e configurazione delle route.
+- `src/case-study.component.ts`, `.html`, `.css`: vista progetto.
+- `scripts/build.mjs`: build Angular con gli argomenti CLI richiesti.
+- `scripts/build-route-shells.mjs`: dopo la build crea gli entry point Angular per i quattro URL progetto e il fallback `404.html` di GitHub Pages. Non genera pagine applicative separate.
 
-La homepage resta renderizzata sul client Angular; le pagine progetto sono statiche. I metadati della homepage includono canonical, Open Graph, social card e dati Person. Il curriculum resta in italiano anche quando si seleziona English.
+Le shell mantengono metadati specifici per condivisione e canonical; titoli, lingua e dati strutturati vengono aggiornati anche durante la navigazione SPA. Il contenuto delle viste viene renderizzato da Angular.
+
+Il cliente ha fornito l’idea; Gioele ha realizzato entrambi i progetti da solo, come confermato dall’autore. Le immagini in `public/projects/` sono catture PNG reali 1x e 2x, accompagnate dalla provenienza. Ogni scheda usa la stessa cornice 16:10, senza alterare o ritagliare le proporzioni delle singole schermate. CookieMakers rimanda anche al repository pubblico. Non sono riportate metriche commerciali non verificate.
 
 ## Demo Spazio
 
