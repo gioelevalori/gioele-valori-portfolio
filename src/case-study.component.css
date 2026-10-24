@@ -3,3 +3,5 @@
 
 .study-preview{margin-block:20px 64px}.study-preview app-project-preview{height:100%}.study-detail{max-width:70ch;padding-block:32px 60px}.study-detail article+article{margin-top:36px;border-top:1px solid #343433;padding-top:28px}.study-detail p,.study-detail li{font-size:17px;line-height:1.75;color:#aaa8a3}.study-detail h2{margin-bottom:16px}.study-detail ul{padding-left:20px}.study-detail li+li{margin-top:10px}
 @media(max-width:700px){.study-preview{margin-block:16px 36px}.study-detail p,.study-detail li{font-size:15px}}
+
+.role{margin-bottom:32px}.study-preview{margin-bottom:28px}

@@ -223,3 +223,19 @@ Project images are recaptured as lossless PNG at 1x and 2x, selected through src
 
 ### Uniform images and SPA navigation
 Every project uses the same 16:10 outer canvas and shared desktop/mobile grid, with intrinsic screenshot proportions and matching margins. The two real project rows share the same column widths. Homepage, Italian case studies and English case studies are now Angular routed views in one SPA. Internal RouterLink navigation does not request a new document; direct URLs and refreshes load the same Angular entry shell with route-specific head metadata. GitHub Pages entry shells and a 404 shell are emitted after the Angular build. The former standalone static study documents are removed. Router scroll restoration owns backward navigation, and leaving a modal for a study page releases body scroll locking.
+
+### One project entry and continuous text motion
+Each real project now has one Discover more action, leading to its complete SPA study; the image leads to the same view. The duplicate inline accordion, modal and secondary case-study link are removed. All former project features and technical contribution remain in the unified study. Spazio keeps its working frontend demo.
+A reusable ScrollRevealDirective registers both existing and dynamically created text groups. Native view timelines move text over its actual viewport entry, with an always-readable opacity baseline and no clipping or class-triggered reset. Unsupported browsers use a single compositor-friendly WAAPI arrival. Profile word transitions overlap across a wider scroll range instead of switching almost one word per frame. Reduced motion cancels either path; screenshot decoding is asynchronous.
+
+### Direct project selection
+The project list becomes a single visible tab panel controlled by three named tabs. Selection updates content in place without scrolling; Arrow keys, Home and End support keyboard use with roving tabindex. Hidden panels do not enter the accessibility tree. The old next/previous counter and sticky project stack are removed from the visible interface. Selected captures are loaded eagerly.
+
+### SPA route transitions
+Angular Router uses native view transitions after the first load. Each project’s preview has a unique shared-element name on the overview and study. A root-scoped selection service keeps the chosen project selected when returning, so the image transitions back to the correct card. Fragment-only navigations and reduced motion skip the effect. Case imagery appears before the contribution text to make the visual destination available immediately.
+
+### Scalable project chooser
+A native select replaces the named tab strip. Previous/next controls change the visible project in place and never scroll the document; the select provides direct access for larger catalogues. Project/study relationships now use stable slugs, not matching array positions. The selected slug determines the correct SPA route and shared image transition.
+
+### Project name and count
+The native select is replaced by the current project name and zero-padded count beside previous/next controls. Native view transitions accompany project, language and theme changes, respecting reduced motion.

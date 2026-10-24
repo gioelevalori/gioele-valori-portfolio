@@ -44,4 +44,4 @@ Demo frontend con ricerca, creazione, filtro, eliminazione e cambio di stato del
 
 ## Movimento e navigazione
 
-Lo scroll resta nativo. I progetti possono sovrapporsi su desktop, mentre il profilo usa timeline CSS progressive. L’opzione di sistema per le animazioni ridotte mantiene una lettura statica. Le schede progetto usano dialog nativi con gestione di focus ed Escape; i casi studio hanno anche URL propri. Un refresh della homepage riparte dalla presentazione, mentre link diretti alle sezioni e tasto Indietro mantengono il comportamento nativo.
+Lo scroll resta nativo con timeline progressive e rispetto delle animazioni ridotte. Le frecce cambiano progetto sul posto; nome e contatore sostituiscono la tendina. Un solo collegamento Scopri di più apre il caso studio completo nella SPA. Transizioni native accompagnano navigazione, selezione progetto, lingua e tema. Spazio mantiene il dialog interattivo.

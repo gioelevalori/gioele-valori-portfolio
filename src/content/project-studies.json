@@ -10,6 +10,12 @@
       "Configuratore e anteprima 3D",
       "Navigazione e flusso di personalizzazione",
       "Interfaccia Angular Material"
+    ],
+    "features": [
+      "Scegliere forma, dedica, immagini e colori del biscotto.",
+      "Visualizzare un’anteprima tridimensionale della personalizzazione.",
+      "Esplorare la galleria e le proposte per eventi.",
+      "Inviare richieste su misura e consultare il carrello."
     ]
   },
   {
@@ -23,6 +29,12 @@
       "Progettazione dell’interfaccia",
       "Sviluppo e configurazione WordPress",
       "Organizzazione di contenuti e navigazione"
+    ],
+    "features": [
+      "Conoscere l’Endurance Battle e le informazioni sulla gara.",
+      "Consultare categorie ed edizioni dell’evento.",
+      "Trovare risposte alle domande frequenti.",
+      "Accedere ai contatti, alla mappa e ai canali social."
     ]
   }
 ]

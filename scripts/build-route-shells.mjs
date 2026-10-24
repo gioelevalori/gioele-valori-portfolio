@@ -6,6 +6,7 @@ const output=new URL('../dist/portfolio/browser/',import.meta.url);
 const shell=await readFile(new URL('index.html',output),'utf8');
 const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 for(const language of ['it','en'])for(const[index,study]of studies.entries()){
+ const project=PROJECTS.find(project=>project.slug===study.slug);if(!project)throw new Error('Missing project: '+study.slug);
  const path=(language==='en'?'en/projects/':'progetti/')+study.slug+'/';
  const title=study.name+' — '+(language==='en'?'Case study':'Caso studio')+' | Gioele Valori';
  const description=language==='en'?(ENGLISH[study.problem]??study.problem):study.problem;
@@ -14,7 +15,7 @@ for(const language of ['it','en'])for(const[index,study]of studies.entries()){
  for(const key of ['name="description"','property="og:description"','name="twitter:description"'])page=page.replace(new RegExp(`<meta ${key} content="[^"]*">`),`<meta ${key} content="${escape(description)}">`);
  for(const key of ['property="og:title"','name="twitter:title"'])page=page.replace(new RegExp(`<meta ${key} content="[^"]*">`),`<meta ${key} content="${escape(title)}">`);
  page=page.replace(/<link rel="canonical" href="[^"]*">/,`<link rel="canonical" href="${url}">`).replace(/<meta property="og:url" content="[^"]*">/,`<meta property="og:url" content="${url}">`);
- for(const key of ['property="og:image"','name="twitter:image"'])page=page.replace(new RegExp(`<meta ${key} content="[^"]*">`),`<meta ${key} content="https://gioelevalori.dev/${PROJECTS[index].image}">`);
+ for(const key of ['property="og:image"','name="twitter:image"'])page=page.replace(new RegExp(`<meta ${key} content="[^"]*">`),`<meta ${key} content="https://gioelevalori.dev/${project.image}">`);
  page=page.replace(/<meta property="og:locale" content="[^"]*">/,`<meta property="og:locale" content="${language==='en'?'en_GB':'it_IT'}">`);
  page=page.replace(/<meta property="og:type" content="[^"]*">/,'<meta property="og:type" content="article">').replace(/<meta property="og:image:width" content="[^"]*">/,'<meta property="og:image:width" content="1440">').replace(/<meta property="og:image:height" content="[^"]*">/,'<meta property="og:image:height" content="900">').replace(/<meta property="og:image:alt" content="[^"]*">/,`<meta property="og:image:alt" content="${escape(study.name)}">`);
  page=page.replace(/<script type="application\/ld\+json">.*?<\/script>/,`<script type="application/ld+json">${JSON.stringify({'@context':'https://schema.org','@type':'CreativeWork',name:study.name,url,description,creator:{'@type':'Person',name:'Gioele Valori',url:'https://gioelevalori.dev/'}})}</script>`);
@@ -23,3 +24,6 @@ for(const language of ['it','en'])for(const[index,study]of studies.entries()){
 }
 await writeFile(new URL('404.html',output),shell);
 console.log('Created Angular entry shells for four project URLs and the Pages fallback.');
+
+const urls=['/',...studies.flatMap(study=>['/progetti/'+study.slug+'/','/en/projects/'+study.slug+'/'])];
+await writeFile(new URL('sitemap.xml',output),'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+urls.map(path=>'<url><loc>https://gioelevalori.dev'+path+'</loc></url>').join('')+'</urlset>');

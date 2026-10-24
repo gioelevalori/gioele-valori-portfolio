@@ -1,4 +1,5 @@
 export const ENGLISH: Record<string, string> = {
+ 'Progetto':'Project',
   'Vai al contenuto': 'Skip to content',
   'Penne, Italia': 'Penne, Italy',
   'Presentazione': 'Introduction',
@@ -222,4 +223,6 @@ export const ENGLISH: Record<string, string> = {
 "Esplora il codice": "Explore the code",
 "Un progetto o un’opportunità da condividere?": "Have a project or opportunity in mind?",
 "Scrivimi": "Get in touch",
+"Scopri di più": "Discover more",
+"Scegli un progetto": "Choose a project",
 };

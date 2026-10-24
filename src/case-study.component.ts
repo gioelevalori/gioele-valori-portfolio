@@ -1,3 +1,5 @@
+import { ProjectSelectionService } from './project-selection.service';
+import { ScrollRevealDirective } from './scroll-reveal.directive';
 import { Component, OnInit, OnDestroy, AfterViewInit, inject, signal, computed } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -6,17 +8,18 @@ import { PROJECTS } from './portfolio-data';
 import { ENGLISH } from './translations';
 import STUDIES from './content/project-studies.json';
 
-@Component({selector:'app-case-study',standalone:true,imports:[RouterLink,ProjectPreviewComponent],templateUrl:'./case-study.component.html',styleUrl:'./case-study.component.css'})
+@Component({selector:'app-case-study',standalone:true,imports:[RouterLink,ProjectPreviewComponent,ScrollRevealDirective],templateUrl:'./case-study.component.html',styleUrl:'./case-study.component.css'})
 export class CaseStudyComponent implements OnInit, OnDestroy, AfterViewInit {
  private route=inject(ActivatedRoute);
+ private selection=inject(ProjectSelectionService);
  private subscription?:Subscription;
  index=signal(0);
  language:'it'|'en'=this.route.snapshot.data['language']??'it';
  study=computed(()=>STUDIES[this.index()]);
- project=computed(()=>PROJECTS[this.index()]);
+ project=computed(()=>PROJECTS.find(project=>project.slug===this.study().slug)??PROJECTS[0]);
  t(value:string){return this.language==='en'?(ENGLISH[value]??value):value;}
  alternateUrl(){return (this.language==='en'?'/progetti/':'/en/projects/')+this.study().slug+'/';}
- ngOnInit(){this.subscription=this.route.paramMap.subscribe(params=>{const index=STUDIES.findIndex(s=>s.slug===params.get('slug'));if(index<0)return;this.index.set(index);try{localStorage.setItem('gv-portfolio-language',this.language);}catch{}this.updateMetadata();});}
+ ngOnInit(){this.subscription=this.route.paramMap.subscribe(params=>{const index=STUDIES.findIndex(s=>s.slug===params.get('slug'));if(index<0)return;this.index.set(index);this.selection.index.set(PROJECTS.findIndex(project=>project.slug===this.study().slug));try{localStorage.setItem('gv-portfolio-language',this.language);}catch{}this.updateMetadata();});}
  ngAfterViewInit(){document.getElementById('case-page-title')?.focus({preventScroll:true});}
  private updateMetadata(){
   const origin='https://gioelevalori.dev';const url=origin+(this.language==='en'?'/en/projects/':'/progetti/')+this.study().slug+'/';
