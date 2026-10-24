@@ -5,3 +5,5 @@
 @media(max-width:700px){.study-preview{margin-block:16px 36px}.study-detail p,.study-detail li{font-size:15px}}
 
 .role{margin-bottom:32px}.study-preview{margin-bottom:28px}
+
+.study-preview{aspect-ratio:auto!important;overflow:visible}.study-preview app-project-preview{height:auto}

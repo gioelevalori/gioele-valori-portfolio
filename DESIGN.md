@@ -253,3 +253,9 @@ The catalogue includes LiberaUI as an open-source Angular component library, dis
 
 ### Hero text overlap correction
 The original Neue Montreal typography remains. The code geometry now occupies a reserved grid area below the role on larger screens and beside the role below the name on mobile, rather than absolute viewport coordinates. Animated wings can no longer cover role text or its project link.
+
+### Exact mobile composition requested by user
+The supplied iPhone reference supersedes the previous hero correction: the artwork sits beside the second name line, the role spans the row below, and the personal background link sits below the description. The down arrow scrolls to selected work; Explore projects still opens the full index. Gallery controls return to a compact previous/count/next arrangement, with the real four-project total.
+
+### Immersive project identities and content consistency
+Project previews use dedicated identity stages: original CookieMakers and Cali al Sole marks, and the original LiberaUI SVG mark, with a shared 16:10 ratio. Case studies retain uncropped desktop/mobile screens below the identity. Repeated study sections are consolidated into project, contribution and features. Language controls and Spazio backend status labels are consistent.
