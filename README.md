@@ -33,9 +33,9 @@ Homepage e casi studio sono viste della stessa SPA Angular, gestite da `@angular
 - `src/main.server.ts`: prerendering Angular dei casi studio.
 - `src/case-study.component.ts`, `.html`, `.css`: vista progetto.
 - `scripts/build.mjs`: build Angular con gli argomenti CLI richiesti.
-- `scripts/build-route-shells.mjs`: dopo la build crea gli entry point Angular per i quattro URL progetto e il fallback `404.html` di GitHub Pages. Non genera pagine applicative separate.
+- `scripts/build-route-shells.mjs`: dopo la build crea gli entry point Angular per gli URL progetto in entrambe le lingue e il fallback `404.html` di GitHub Pages. Non genera pagine applicative separate.
 
-I quattro casi studio e i due elenchi progetti sono prerenderizzati da Angular: titolo, testi, immagini e collegamenti sono presenti nell’HTML anche senza JavaScript. Hydration e RouterLink mantengono poi la navigazione SPA. La homepage resta client-rendered. Canonical, hreflang e dati strutturati seguono la lingua. La favicon SVG è attiva.
+I casi studio e gli elenchi progetti sono prerenderizzati da Angular: titolo, testi, immagini e collegamenti sono presenti nell’HTML anche senza JavaScript. Hydration e RouterLink mantengono poi la navigazione SPA. La homepage resta client-rendered. Canonical, hreflang e dati strutturati seguono la lingua. La favicon SVG è attiva.
 
 Il cliente ha fornito l’idea; Gioele ha realizzato entrambi i progetti da solo, come confermato dall’autore. Le immagini in `public/projects/` sono catture PNG reali 1x e 2x, accompagnate dalla provenienza. Ogni scheda usa la stessa cornice 16:10, senza alterare o ritagliare le proporzioni delle singole schermate. Le schede mettono in primo piano la visita al sito e il contatto. Non sono riportate metriche commerciali non verificate.
 
@@ -54,3 +54,7 @@ La scheda principale mantiene nome, contatore e frecce. Esplora i progetti apre 
 Misure locali indicative su Chrome, viewport 390×844, DPR 2: immagini principali CookieMakers da 1.38 MB a circa 33 KB; Le miniature sperimentali sono state rimosse su richiesta. Singole esecuzioni non equivalgono ai Core Web Vitals sul campo: LCP e CLS vanno valutati su più esecuzioni e sui dati reali degli utenti; INP richiede interazioni rappresentative.
 
 Misurazione finale con la libreria ufficiale web-vitals, Chrome locale 390×844 DPR 2 e sei cambi progetto: LCP 0.66 s, CLS 0.013, INP 104 ms. Sono risultati di laboratorio senza throttling, non percentili sul campo né una garanzia per tutti i dispositivi.
+
+## LiberaUI
+
+Il progetto open source LiberaUI è incluso nel catalogo e nei casi studio IT/EN. Descrizioni e funzionalità sono verificate sul sito pubblico e sul README di gioelevalori/ng-library; non è presentato come lavoro per un cliente. Le catture reali desktop/mobile hanno varianti PNG, AVIF e WebP con provenienza.

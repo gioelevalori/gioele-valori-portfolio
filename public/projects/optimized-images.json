@@ -142,6 +142,76 @@
       "target": "public/projects/cali-al-sole-mobile-780.webp",
       "width": 780,
       "bytes": 69594
+    },
+    {
+      "target": "public/projects/libera-ui-480.avif",
+      "width": 480,
+      "bytes": 8183
+    },
+    {
+      "target": "public/projects/libera-ui-480.webp",
+      "width": 480,
+      "bytes": 11870
+    },
+    {
+      "target": "public/projects/libera-ui-960.avif",
+      "width": 960,
+      "bytes": 22879
+    },
+    {
+      "target": "public/projects/libera-ui-960.webp",
+      "width": 960,
+      "bytes": 33174
+    },
+    {
+      "target": "public/projects/libera-ui-1440.avif",
+      "width": 1440,
+      "bytes": 37042
+    },
+    {
+      "target": "public/projects/libera-ui-1440.webp",
+      "width": 1440,
+      "bytes": 56036
+    },
+    {
+      "target": "public/projects/libera-ui-2880.avif",
+      "width": 2880,
+      "bytes": 71607
+    },
+    {
+      "target": "public/projects/libera-ui-2880.webp",
+      "width": 2880,
+      "bytes": 127892
+    },
+    {
+      "target": "public/projects/libera-ui-mobile-195.avif",
+      "width": 195,
+      "bytes": 9781
+    },
+    {
+      "target": "public/projects/libera-ui-mobile-195.webp",
+      "width": 195,
+      "bytes": 14012
+    },
+    {
+      "target": "public/projects/libera-ui-mobile-390.avif",
+      "width": 390,
+      "bytes": 27552
+    },
+    {
+      "target": "public/projects/libera-ui-mobile-390.webp",
+      "width": 390,
+      "bytes": 38014
+    },
+    {
+      "target": "public/projects/libera-ui-mobile-780.avif",
+      "width": 780,
+      "bytes": 54051
+    },
+    {
+      "target": "public/projects/libera-ui-mobile-780.webp",
+      "width": 780,
+      "bytes": 86516
     }
   ]
 }

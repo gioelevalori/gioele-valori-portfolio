@@ -247,3 +247,6 @@ A responsive contact sheet exposes all project names and previews, while the mai
 The experimental thumbnail selector is removed. Explore projects and the main Projects navigation open /progetti/ or /en/projects/ with all three projects, descriptions, technology lists and one clear text action per entry. Real case studies link back to the index; Spazio opens the working demo via the shared home SPA route. Both indexes are prerendered, have canonical/hreflang and ItemList metadata, and participate in route transitions.
 
 Case-study primary actions now emphasize visiting the finished site and contacting Gioele. The CookieMakers source-code CTA is removed at the user’s request; contribution and technology explanations remain.
+
+### LiberaUI
+The catalogue includes LiberaUI as an open-source Angular component library, distinct from client projects and the Spazio demo. It uses the same uncropped desktop/mobile composition, bilingual study structure and shared-image route transition.

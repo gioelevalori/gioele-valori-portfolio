@@ -1,7 +1,8 @@
 import sharp from 'sharp';
+import {PROJECTS} from '../src/portfolio-data.ts';
 import {readFile,writeFile} from 'node:fs/promises';
 const report=[];
-for(const slug of ['cookiemakers','cali-al-sole']){
+for(const {slug} of PROJECTS.filter(project=>!project.demo&&project.image)){
  for(const mobile of [false,true]){
   const stem=slug+(mobile?'-mobile':'');const input='public/projects/'+stem+'@2x.png';
   for(const width of (mobile?[195,390,780]:[480,960,1440,2880]))for(const format of ['avif','webp']){

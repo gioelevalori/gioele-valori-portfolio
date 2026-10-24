@@ -36,5 +36,24 @@
       "Trovare risposte alle domande frequenti.",
       "Accedere ai contatti, alla mappa e ai canali social."
     ]
+  },
+  {
+    "slug": "libera-ui",
+    "name": "LiberaUI",
+    "subtitle": "Componenti riutilizzabili, con spazio per personalizzarli.",
+    "problem": "Rendere più semplice esplorare e provare componenti Angular prima di usarli in un’interfaccia.",
+    "approach": "Ho realizzato LiberaUI per raccogliere componenti riutilizzabili e mostrarne l’utilizzo in un sito di documentazione. Il playground usa il componente reale della libreria e aggiorna l’esempio di codice mentre cambiano le opzioni. Il progetto è distribuito con licenza MIT.",
+    "result": "Una libreria open source con un sito di documentazione e un ambiente interattivo per esplorare le personalizzazioni.",
+    "focus": [
+      "Componenti Angular riutilizzabili",
+      "Documentazione con esempi di utilizzo",
+      "Playground con anteprima ed esempio aggiornati"
+    ],
+    "features": [
+      "Esplorare pulsanti, controlli per i form, tabelle, card e animazioni.",
+      "Modificare testo, colore, angoli, spaziatura e stato disabilitato di un pulsante.",
+      "Vedere l’anteprima e l’esempio di codice aggiornarsi con le proprie scelte.",
+      "Consultare le istruzioni di utilizzo e la guida per contribuire al progetto."
+    ]
   }
 ]
