@@ -250,3 +250,6 @@ Case-study primary actions now emphasize visiting the finished site and contacti
 
 ### LiberaUI
 The catalogue includes LiberaUI as an open-source Angular component library, distinct from client projects and the Spazio demo. It uses the same uncropped desktop/mobile composition, bilingual study structure and shared-image route transition.
+
+### Hero text overlap correction
+The original Neue Montreal typography remains. The code geometry now occupies a reserved grid area below the role on larger screens and beside the role below the name on mobile, rather than absolute viewport coordinates. Animated wings can no longer cover role text or its project link.
