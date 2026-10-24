@@ -1,0 +1,26 @@
+services:
+  database:
+    image: postgres:18-alpine
+    environment:
+      POSTGRES_DB: spazio
+      POSTGRES_USER: spazio
+      POSTGRES_PASSWORD: ${SPAZIO_DB_PASSWORD:?Set SPAZIO_DB_PASSWORD}
+    volumes:
+      - spazio-data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U spazio -d spazio"]
+      interval: 5s
+      retries: 15
+  api:
+    build: ./Spazio.Api
+    ports: ["127.0.0.1:5080:8080"]
+    environment:
+      ConnectionStrings__Spazio: Host=database;Database=spazio;Username=spazio;Password=${SPAZIO_DB_PASSWORD}
+      Database__Initialize: "true"
+      AllowedOrigins__0: http://127.0.0.1:4200
+      AllowedOrigins__1: http://localhost:4200
+    depends_on:
+      database:
+        condition: service_healthy
+volumes:
+  spazio-data:

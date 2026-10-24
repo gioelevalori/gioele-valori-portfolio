@@ -1,3 +1,4 @@
+import { SpazioApiService, SpazioTask } from './spazio-api.service';
 import { ProjectSelectionService } from './project-selection.service';
 import { ScrollRevealDirective } from './scroll-reveal.directive';
 import { RouterLink } from '@angular/router';
@@ -5,14 +6,13 @@ import { PROJECTS, SERVICES, GUARANTEES, JOBS, SKILLS } from './portfolio-data';
 import { ENGLISH } from './translations';
 import { AfterViewInit, ChangeDetectorRef, Component, computed, inject, HostListener, OnDestroy, signal } from '@angular/core';
 import { ProjectPreviewComponent } from './project-preview.component';
-import STUDIES from './content/project-studies.json';
 
 type TaskState = 'Da fare' | 'In corso' | 'Completate';
-interface DemoTask { id: string; title: string; tag: string; state: TaskState; due: string; }
+type DemoTask=SpazioTask;
 
 @Component({selector:'app-home',standalone:true,imports:[ProjectPreviewComponent,RouterLink,ScrollRevealDirective],templateUrl:'./app.component.html'})
 export class App implements AfterViewInit, OnDestroy {
- studies=STUDIES;
+ galleryUrl(){return this.language()==='en'?'/en/projects/':'/progetti/';}
  studyUrl(index:number){return (this.language()==='en'?'/en/projects/':'/progetti/')+this.projects[index].slug+'/';}
  language=signal<'it'|'en'>(this.loadLanguage());
  private loadLanguage():'it'|'en'{const requested=new URLSearchParams(location.search).get('lang');if(requested==='it'||requested==='en')return requested;try{return localStorage.getItem('gv-portfolio-language')==='en'?'en':'it';}catch{return 'it';}}
@@ -39,6 +39,10 @@ export class App implements AfterViewInit, OnDestroy {
  t(value:unknown):string{const text=value==null?'':String(value);if(this.language()==='it')return text;const exact=ENGLISH[text];if(exact!==undefined)return exact;for(const [it,en]of [['Attività aggiunta: ','Task added: '],['Elimina attività: ','Delete task: '],['Stato di ','Status of '],['Scadenza · ','Due · '],['Scopri ','Explore '],['Screenshot del sito ','Screenshot of '],['Un’anteprima del sito ','A preview of ']]){if(text.startsWith(it))return en+text.slice(it.length);}if(text.startsWith('Attività spostata in '))return 'Task moved to '+this.t(text.slice('Attività spostata in '.length,-1))+'.';return text;}
  taskCount(count:number){return this.language()==='en'?count+' '+(count===1?'task':'tasks'):count+' attività';}
 
+ api=inject(SpazioApiService);
+ async connectApi(){await this.apiAction(()=>this.api.connect());}
+ useBrowserDemo(){this.api.disconnect();this.demoTasks.set(this.loadDemo());}
+ private async apiAction(action:()=>Promise<DemoTask[]>){if(this.api.busy())return false;this.api.busy.set(true);this.api.error.set(false);try{const tasks=await action();this.demoTasks.set(tasks);return true;}catch{this.api.error.set(true);if(!this.api.connected())this.demoTasks.set(this.loadDemo());return false;}finally{this.api.busy.set(false);}}
  menuOpen=signal(false);
  closeMenu(){this.menuOpen.set(false);}
  @HostListener('document:keydown.escape') escapeMenu(){if(this.menuOpen()){this.closeMenu();document.querySelector<HTMLButtonElement>('.menu-toggle')?.focus();}}
@@ -49,7 +53,7 @@ export class App implements AfterViewInit, OnDestroy {
  query=signal('');stateFilter=signal('Tutte');dragOver=signal('');demoMessage=signal('');storageAvailable=signal(true);
  private lastFocus: HTMLElement|null=null; private oldOverflow=''; private readonly storageKey='gv-spazio-demo-v1';
  demoTasks=signal<DemoTask[]>(this.loadDemo());
- filteredTasks=computed(()=>this.demoTasks().filter(task=>(this.stateFilter()==='Tutte'||task.state===this.stateFilter())&&[task.title,task.tag,task.id.startsWith('sample-')?this.t(task.title):'',this.t(task.tag)].join(' ').toLocaleLowerCase('it').includes(this.query().trim().toLocaleLowerCase('it'))));
+ filteredTasks=computed(()=>this.demoTasks().filter(task=>(this.stateFilter()==='Tutte'||task.state===this.stateFilter())&&[task.title,task.tag,(task.id.startsWith('sample-')||task.sample)?this.t(task.title):'',this.t(task.tag)].join(' ').toLocaleLowerCase('it').includes(this.query().trim().toLocaleLowerCase('it'))));
  inputValue(event:Event){return (event.target as HTMLInputElement).value;}
  tasksFor(state:TaskState){return this.filteredTasks().filter(task=>task.state===state);}
  private sampleTasks():DemoTask[]{return [
@@ -61,15 +65,16 @@ export class App implements AfterViewInit, OnDestroy {
  private loadDemo():DemoTask[]{try{const raw=localStorage.getItem(this.storageKey);if(!raw)return this.sampleTasks();const data:unknown=JSON.parse(raw);if(!Array.isArray(data)||data.length>200)throw Error('Invalid data');const valid=data.every(t=>t&&typeof t.id==='string'&&typeof t.title==='string'&&t.title.length>0&&t.title.length<=90&&typeof t.tag==='string'&&t.tag.length<=30&&['Da fare','In corso','Completate'].includes(t.state)&&typeof t.due==='string'&&(!t.due||/^\d{4}-\d{2}-\d{2}$/.test(t.due)));if(!valid||new Set(data.map(t=>t.id)).size!==data.length)throw Error('Invalid data');return data as DemoTask[];}catch{this.storageAvailable.set(false);return this.sampleTasks();}}
  private saveDemo(){try{localStorage.setItem(this.storageKey,JSON.stringify(this.demoTasks()));this.storageAvailable.set(true);}catch{this.storageAvailable.set(false);}}
  private transition(update:()=>void){const doc=document as Document & {startViewTransition?:(callback:()=>Promise<void>)=>{finished:Promise<void>;ready:Promise<void>;updateCallbackDone:Promise<void>}};if(doc.startViewTransition&&!matchMedia('(prefers-reduced-motion: reduce)').matches){const result=doc.startViewTransition(async()=>{update();this.cdr.detectChanges();});void result.finished.catch(()=>{});void result.ready.catch(()=>{});void result.updateCallbackDone.catch(()=>{});}else{update();this.cdr.detectChanges();if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.querySelector('.project:not([hidden])')?.animate([{opacity:.65,transform:'translateY(10px)'},{opacity:1,transform:'translateY(0)'}],{duration:650,easing:'cubic-bezier(.22,.61,.36,1)'});}}}
- openDemo(event?:Event){event?.preventDefault();if(this.demoOpen())return;this.lastFocus=document.activeElement as HTMLElement;this.oldOverflow=document.body.style.overflow;this.projectView.set('demo');this.transition(()=>{this.demoOpen.set(true);document.body.style.overflow='hidden';document.querySelector<HTMLDialogElement>('.project-dialog')?.showModal();});}
+ openDemo(event?:Event){event?.preventDefault();if(this.demoOpen())return;this.lastFocus=document.activeElement as HTMLElement;this.oldOverflow=document.body.style.overflow;this.projectView.set('demo');this.transition(()=>this.showDemo());}
+ private showDemo(){this.demoOpen.set(true);document.body.style.overflow='hidden';document.querySelector<HTMLDialogElement>('.project-dialog')?.showModal();}
  closeDemo(event?:Event){event?.preventDefault();this.transition(()=>document.querySelector<HTMLDialogElement>('.project-dialog')?.close());}
- afterDemoClosed(){this.demoOpen.set(false);document.body.style.overflow=this.oldOverflow;this.showTaskForm.set(false);this.lastFocus?.focus({preventScroll:true});}
+ afterDemoClosed(){const url=new URL(location.href);if(url.searchParams.has('demo')){url.searchParams.delete('demo');history.replaceState(history.state,'',url);}this.demoOpen.set(false);document.body.style.overflow=this.oldOverflow;this.showTaskForm.set(false);this.lastFocus?.focus({preventScroll:true});}
  cancelDemo(event:Event){event.preventDefault();this.closeDemo();}
  backdropClick(event:MouseEvent){if(event.target===event.currentTarget)this.closeDemo();}
- addTask(event:Event,title:string,tag:string,due:string){event.preventDefault();const clean=title.trim();if(!clean){this.demoMessage.set('Scrivi un nome per l’attività.');return;}if(this.demoTasks().length>=200){this.demoMessage.set('La demo contiene già 200 attività. Eliminane una prima di aggiungerne altre.');return;}this.demoTasks.update(tasks=>[...tasks,{id:crypto.randomUUID(),title:clean.slice(0,90),tag,state:'Da fare',due}]);this.query.set('');this.stateFilter.set('Tutte');this.showTaskForm.set(false);this.saveDemo();this.demoMessage.set('Attività aggiunta: '+clean);}
- changeTaskState(id:string,state:string){if(!this.states.includes(state as TaskState))return;this.demoTasks.update(tasks=>tasks.map(t=>t.id===id?{...t,state:state as TaskState}:t));this.saveDemo();this.demoMessage.set('Attività spostata in '+state+'.');}
- deleteTask(id:string){this.demoTasks.update(tasks=>tasks.filter(t=>t.id!==id));this.saveDemo();this.demoMessage.set('Attività eliminata.');}
- resetDemo(){this.demoTasks.set(this.sampleTasks());this.query.set('');this.stateFilter.set('Tutte');this.saveDemo();this.demoMessage.set('Bacheca di esempio ripristinata.');}
+ async addTask(event:Event,title:string,tag:string,due:string){event.preventDefault();const clean=title.trim();if(!clean){this.demoMessage.set('Scrivi un nome per l’attività.');return;}if(this.demoTasks().length>=200){this.demoMessage.set('La demo contiene già 200 attività. Eliminane una prima di aggiungerne altre.');return;}if(this.api.connected()){if(await this.apiAction(()=>this.api.add({title:clean.slice(0,90),tag,state:'Da fare',due}))){this.query.set('');this.stateFilter.set('Tutte');this.showTaskForm.set(false);this.demoMessage.set('Attività aggiunta: '+clean);}return;}this.demoTasks.update(tasks=>[...tasks,{id:crypto.randomUUID(),title:clean.slice(0,90),tag,state:'Da fare',due}]);this.query.set('');this.stateFilter.set('Tutte');this.showTaskForm.set(false);this.saveDemo();this.demoMessage.set('Attività aggiunta: '+clean);}
+ async changeTaskState(id:string,state:string){if(!this.states.includes(state as TaskState))return;if(this.api.connected()){await this.apiAction(()=>this.api.changeState(id,state));return;}this.demoTasks.update(tasks=>tasks.map(t=>t.id===id?{...t,state:state as TaskState}:t));this.saveDemo();this.demoMessage.set('Attività spostata in '+state+'.');}
+ async deleteTask(id:string){if(this.api.connected()){await this.apiAction(()=>this.api.remove(id));return;}this.demoTasks.update(tasks=>tasks.filter(t=>t.id!==id));this.saveDemo();this.demoMessage.set('Attività eliminata.');}
+ async resetDemo(){if(this.api.connected()){if(await this.apiAction(()=>this.api.reset())){this.query.set('');this.stateFilter.set('Tutte');}return;}this.demoTasks.set(this.sampleTasks());this.query.set('');this.stateFilter.set('Tutte');this.saveDemo();this.demoMessage.set('Bacheca di esempio ripristinata.');}
  startDrag(event:DragEvent,id:string){event.dataTransfer?.setData('text/plain',id);if(event.dataTransfer)event.dataTransfer.effectAllowed='move';}
  allowDrop(event:DragEvent,state:TaskState){event.preventDefault();this.dragOver.set(state);if(event.dataTransfer)event.dataTransfer.dropEffect='move';}
  dropTask(event:DragEvent,state:TaskState){event.preventDefault();const id=event.dataTransfer?.getData('text/plain');if(id&&this.demoTasks().some(t=>t.id===id))this.changeTaskState(id,state);this.dragOver.set('');}
@@ -78,8 +83,9 @@ export class App implements AfterViewInit, OnDestroy {
  private frame=0;
  ngAfterViewInit(){
    this.updateLanguageMetadata();
+   void this.api.configure().then(()=>{if(this.api.connected())return this.apiAction(()=>this.api.list());return undefined;});
    this.updateScene();
-
+   if(new URLSearchParams(location.search).get('demo')==='spazio'){this.featuredIndex.set(this.projects.findIndex(p=>p.slug==='spazio'));this.oldOverflow=document.body.style.overflow;this.showDemo();this.cdr.detectChanges();this.lastFocus=document.querySelector<HTMLElement>('.project-selected .project-demo-link');}
  }
  @HostListener('window:scroll') onScroll(){if(!this.frame)this.frame=requestAnimationFrame(()=>{this.updateScene();this.frame=0;});}
  @HostListener('window:resize') onResize(){this.updateScene();}

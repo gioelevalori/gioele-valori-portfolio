@@ -8,3 +8,9 @@ dist/
 .impeccable/build/
 .impeccable/review/
 .impeccable/mocks/
+
+# Backend build products and local configuration
+**/bin/
+**/obj/
+backend/.env
+backend/**/appsettings.Development.json

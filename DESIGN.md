@@ -239,3 +239,11 @@ A native select replaces the named tab strip. Previous/next controls change the 
 
 ### Project name and count
 The native select is replaced by the current project name and zero-padded count beside previous/next controls. Native view transitions accompany project, language and theme changes, respecting reduced motion.
+
+### Discoverability, image delivery and real backend
+A responsive contact sheet exposes all project names and previews, while the main stage retains its name/count and arrows. AVIF and WebP width candidates preserve the screenshot composition with PNG fallbacks. Project routes are now prerendered with Angular hydration; home remains CSR. The existing SVG favicon is enabled. Spazio has an explicitly separate API mode with .NET 10 Identity, private PostgreSQL boards and server-side validation; the public static demo remains local until an API host is configured.
+
+### Dedicated project index
+The experimental thumbnail selector is removed. Explore projects and the main Projects navigation open /progetti/ or /en/projects/ with all three projects, descriptions, technology lists and one clear text action per entry. Real case studies link back to the index; Spazio opens the working demo via the shared home SPA route. Both indexes are prerendered, have canonical/hreflang and ItemList metadata, and participate in route transitions.
+
+Case-study primary actions now emphasize visiting the finished site and contacting Gioele. The CookieMakers source-code CTA is removed at the user’s request; contribution and technology explanations remain.

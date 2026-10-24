@@ -31,7 +31,7 @@ Sito pubblicato: https://gioelevalori.dev/
 - Applicazione Angular con TypeScript, pubblicata su GitHub Pages.
 - Presentazione personale, progetti con descrizioni e collegamenti, profilo, esperienze, competenze, formazione e contatti.
 - Progetti reali: CookieMakers — My Cookie Delight (https://gioelevalori.github.io/cookiemakers/#/) e Cali al Sole — Endurance Battle (https://calialsole.it/).
-- Spazio è un progetto dimostrativo: gestione attività nel browser con persistenza locale. Non rappresenta un cliente reale e non dispone di backend.
+- Spazio è un progetto dimostrativo con modalità browser e backend ASP.NET Core 10 + Identity + PostgreSQL implementato e verificato in locale. Non rappresenta un cliente reale. La demo pubblica resta locale finché non viene configurato un hosting API.
 - Angular è una scelta esplicita del committente. C# o Node.js e PostgreSQL sono possibilità per esigenze future, non componenti attualmente implementati né requisiti per il sito statico.
 - Restano da definire eventuali servizi freelance, tariffe e disponibilità: non inventarli.
 

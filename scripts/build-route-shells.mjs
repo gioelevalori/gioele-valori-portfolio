@@ -3,7 +3,8 @@ import {PROJECTS} from '../src/portfolio-data.ts';
 import {ENGLISH} from '../src/translations.ts';
 const studies=JSON.parse(await readFile(new URL('../src/content/project-studies.json',import.meta.url),'utf8'));
 const output=new URL('../dist/portfolio/browser/',import.meta.url);
-const shell=await readFile(new URL('index.html',output),'utf8');
+const shell=await readFile(new URL('index.csr.html',output),'utf8');
+await writeFile(new URL('index.html',output),shell);
 const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 for(const language of ['it','en'])for(const[index,study]of studies.entries()){
  const project=PROJECTS.find(project=>project.slug===study.slug);if(!project)throw new Error('Missing project: '+study.slug);
@@ -11,7 +12,8 @@ for(const language of ['it','en'])for(const[index,study]of studies.entries()){
  const title=study.name+' — '+(language==='en'?'Case study':'Caso studio')+' | Gioele Valori';
  const description=language==='en'?(ENGLISH[study.problem]??study.problem):study.problem;
  const url='https://gioelevalori.dev/'+path;
- let page=shell.replace('<html lang="it">',`<html lang="${language}">`).replace(/<title>.*?<\/title>/,`<title>${escape(title)}</title>`);
+ let routeShell;try{routeShell=await readFile(new URL(path+'index.html',output),'utf8');}catch{throw new Error('Missing Angular prerender: '+path);}
+ let page=routeShell.replace('<html lang="it">',`<html lang="${language}">`).replace(/<title>.*?<\/title>/,`<title>${escape(title)}</title>`);
  for(const key of ['name="description"','property="og:description"','name="twitter:description"'])page=page.replace(new RegExp(`<meta ${key} content="[^"]*">`),`<meta ${key} content="${escape(description)}">`);
  for(const key of ['property="og:title"','name="twitter:title"'])page=page.replace(new RegExp(`<meta ${key} content="[^"]*">`),`<meta ${key} content="${escape(title)}">`);
  page=page.replace(/<link rel="canonical" href="[^"]*">/,`<link rel="canonical" href="${url}">`).replace(/<meta property="og:url" content="[^"]*">/,`<meta property="og:url" content="${url}">`);
@@ -23,7 +25,11 @@ for(const language of ['it','en'])for(const[index,study]of studies.entries()){
  const folder=new URL(path,output);await mkdir(folder,{recursive:true});await writeFile(new URL('index.html',folder),page);
 }
 await writeFile(new URL('404.html',output),shell);
-console.log('Created Angular entry shells for four project URLs and the Pages fallback.');
+console.log('Verified prerendered Angular case studies and created the Pages fallback.');
 
-const urls=['/',...studies.flatMap(study=>['/progetti/'+study.slug+'/','/en/projects/'+study.slug+'/'])];
+const urls=['/','/progetti/','/en/projects/',...studies.flatMap(study=>['/progetti/'+study.slug+'/','/en/projects/'+study.slug+'/'])];
 await writeFile(new URL('sitemap.xml',output),'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+urls.map(path=>'<url><loc>https://gioelevalori.dev'+path+'</loc></url>').join('')+'</urlset>');
+
+const apiUrl=process.env.SPAZIO_API_URL??'';
+if(apiUrl){const url=new URL(apiUrl);if(url.protocol!=='https:'&&!['localhost','127.0.0.1'].includes(url.hostname))throw new Error('SPAZIO_API_URL requires HTTPS');}
+await writeFile(new URL('spazio-config.json',output),JSON.stringify({apiUrl}));

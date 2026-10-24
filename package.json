@@ -4,15 +4,19 @@
   "private": true,
   "scripts": {
     "start": "ng serve --host 127.0.0.1",
-    "build": "node scripts/build.mjs"
+    "build": "node scripts/build.mjs",
+    "images:optimize": "node scripts/optimize-images.mjs"
   },
   "dependencies": {
     "@angular/common": "22.2.3",
     "@angular/compiler": "22.2.3",
     "@angular/core": "22.2.3",
     "@angular/platform-browser": "22.2.3",
+    "@angular/platform-server": "22.2.3",
     "@angular/router": "22.2.3",
+    "@angular/ssr": "22.2.3",
     "rxjs": "~7.8.2",
+    "sharp": "^0.35.5",
     "tslib": "^2.8.1"
   },
   "devDependencies": {

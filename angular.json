@@ -28,7 +28,9 @@
               "scripts": true,
               "styles": true
             },
-            "outputHashing": "all"
+            "outputHashing": "all",
+            "server": "src/main.server.ts",
+            "outputMode": "static"
           }
         },
         "serve": {

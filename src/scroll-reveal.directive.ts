@@ -1,16 +1,19 @@
+import { isPlatformBrowser } from '@angular/common';
+import { PLATFORM_ID } from '@angular/core';
 import { AfterViewInit, Directive, ElementRef, OnDestroy, inject } from '@angular/core';
 
 /** Native scroll timelines drive text motion; one-shot WAAPI is the browser fallback. */
 @Directive({selector:'[scrollReveal]',standalone:true,host:{class:'motion-text'}})
 export class ScrollRevealDirective implements AfterViewInit, OnDestroy {
  private element=inject(ElementRef<HTMLElement>).nativeElement;
- private media=matchMedia('(prefers-reduced-motion: reduce)');
+ private browser=isPlatformBrowser(inject(PLATFORM_ID));
+ private media=this.browser?matchMedia('(prefers-reduced-motion: reduce)'):null;
  private observer?:IntersectionObserver;
  private animation?:Animation;
- private onPreferenceChange=()=>{if(this.media.matches){this.animation?.cancel();this.observer?.disconnect();}else this.observeFallback();};
- ngAfterViewInit(){this.media.addEventListener('change',this.onPreferenceChange);this.observeFallback();}
+ private onPreferenceChange=()=>{if(this.media?.matches){this.animation?.cancel();this.observer?.disconnect();}else this.observeFallback();};
+ ngAfterViewInit(){if(!this.media)return;this.media.addEventListener('change',this.onPreferenceChange);this.observeFallback();}
  private observeFallback(){
-  if(this.media.matches||CSS.supports('animation-timeline: view()')||!('IntersectionObserver' in window))return;
+  if(!this.browser||this.media?.matches||CSS.supports('animation-timeline: view()')||!('IntersectionObserver' in window))return;
   this.observer?.disconnect();
   this.observer=new IntersectionObserver(entries=>{if(entries.some(entry=>entry.isIntersecting)){
    this.observer?.disconnect();
@@ -18,5 +21,5 @@ export class ScrollRevealDirective implements AfterViewInit, OnDestroy {
   }},{threshold:0,rootMargin:'0px 0px -24px 0px'});
   this.observer.observe(this.element);
  }
- ngOnDestroy(){this.observer?.disconnect();this.animation?.cancel();this.media.removeEventListener('change',this.onPreferenceChange);}
+ ngOnDestroy(){this.observer?.disconnect();this.animation?.cancel();this.media?.removeEventListener('change',this.onPreferenceChange);}
 }

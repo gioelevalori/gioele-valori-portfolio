@@ -1,0 +1,147 @@
+{
+  "source": "Existing original PNG screen captures; source provenance in matching .png.json files.",
+  "avifQuality": 72,
+  "webpQuality": 92,
+  "files": [
+    {
+      "target": "public/projects/cookiemakers-480.avif",
+      "width": 480,
+      "bytes": 8444
+    },
+    {
+      "target": "public/projects/cookiemakers-480.webp",
+      "width": 480,
+      "bytes": 13800
+    },
+    {
+      "target": "public/projects/cookiemakers-960.avif",
+      "width": 960,
+      "bytes": 24761
+    },
+    {
+      "target": "public/projects/cookiemakers-960.webp",
+      "width": 960,
+      "bytes": 40986
+    },
+    {
+      "target": "public/projects/cookiemakers-1440.avif",
+      "width": 1440,
+      "bytes": 40952
+    },
+    {
+      "target": "public/projects/cookiemakers-1440.webp",
+      "width": 1440,
+      "bytes": 69990
+    },
+    {
+      "target": "public/projects/cookiemakers-2880.avif",
+      "width": 2880,
+      "bytes": 85643
+    },
+    {
+      "target": "public/projects/cookiemakers-2880.webp",
+      "width": 2880,
+      "bytes": 155978
+    },
+    {
+      "target": "public/projects/cookiemakers-mobile-195.avif",
+      "width": 195,
+      "bytes": 7215
+    },
+    {
+      "target": "public/projects/cookiemakers-mobile-195.webp",
+      "width": 195,
+      "bytes": 11270
+    },
+    {
+      "target": "public/projects/cookiemakers-mobile-390.avif",
+      "width": 390,
+      "bytes": 19856
+    },
+    {
+      "target": "public/projects/cookiemakers-mobile-390.webp",
+      "width": 390,
+      "bytes": 33100
+    },
+    {
+      "target": "public/projects/cookiemakers-mobile-780.avif",
+      "width": 780,
+      "bytes": 42391
+    },
+    {
+      "target": "public/projects/cookiemakers-mobile-780.webp",
+      "width": 780,
+      "bytes": 80542
+    },
+    {
+      "target": "public/projects/cali-al-sole-480.avif",
+      "width": 480,
+      "bytes": 13056
+    },
+    {
+      "target": "public/projects/cali-al-sole-480.webp",
+      "width": 480,
+      "bytes": 20202
+    },
+    {
+      "target": "public/projects/cali-al-sole-960.avif",
+      "width": 960,
+      "bytes": 28320
+    },
+    {
+      "target": "public/projects/cali-al-sole-960.webp",
+      "width": 960,
+      "bytes": 44350
+    },
+    {
+      "target": "public/projects/cali-al-sole-1440.avif",
+      "width": 1440,
+      "bytes": 43926
+    },
+    {
+      "target": "public/projects/cali-al-sole-1440.webp",
+      "width": 1440,
+      "bytes": 77232
+    },
+    {
+      "target": "public/projects/cali-al-sole-2880.avif",
+      "width": 2880,
+      "bytes": 92905
+    },
+    {
+      "target": "public/projects/cali-al-sole-2880.webp",
+      "width": 2880,
+      "bytes": 171212
+    },
+    {
+      "target": "public/projects/cali-al-sole-mobile-195.avif",
+      "width": 195,
+      "bytes": 8221
+    },
+    {
+      "target": "public/projects/cali-al-sole-mobile-195.webp",
+      "width": 195,
+      "bytes": 13538
+    },
+    {
+      "target": "public/projects/cali-al-sole-mobile-390.avif",
+      "width": 390,
+      "bytes": 18625
+    },
+    {
+      "target": "public/projects/cali-al-sole-mobile-390.webp",
+      "width": 390,
+      "bytes": 31686
+    },
+    {
+      "target": "public/projects/cali-al-sole-mobile-780.avif",
+      "width": 780,
+      "bytes": 39243
+    },
+    {
+      "target": "public/projects/cali-al-sole-mobile-780.webp",
+      "width": 780,
+      "bytes": 69594
+    }
+  ]
+}

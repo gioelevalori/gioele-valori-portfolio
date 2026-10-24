@@ -7,3 +7,5 @@
 .demo-workspace .empty-column,.demo-workspace .due-date,.demo-workspace .live-column-title>span,.demo-workspace .demo-footer,.demo-workspace .task-total{color:#595959}
 .demo-workspace input::placeholder{color:#606060;opacity:1}
 @media(prefers-reduced-motion:reduce){.site{transition:none}}
+
+.demo-controls{border:0;padding:0;margin:0;min-width:0}.demo-connection{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:18px;font-size:14px;color:var(--muted)}.demo-connection button,.demo-connection a{min-height:44px;display:inline-flex;align-items:center;border:1px solid var(--line);padding:8px 14px;background:transparent;color:var(--fg);font:inherit}.demo-connection p{margin-right:auto}.demo-api-error{padding:14px 0;font-size:14px;color:var(--fg)}
