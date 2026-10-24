@@ -407,3 +407,14 @@ a:hover .brand-mark,a:focus-visible .brand-mark{transform:scale(1.045)}
 @media(prefers-reduced-motion:reduce){.brand-mark{transition:none}a:hover .brand-mark,a:focus-visible .brand-mark{transform:none}}
 
 .brand-libera{background:#eeeeef}.brand-libera .brand-libera-mark{width:28%;height:46%;image-rendering:auto}
+
+.brand-stage.has-screen{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:7%;padding:7%}
+.brand-stage.has-screen .brand-mark{width:100%;height:auto;max-height:90%;object-fit:contain}
+.brand-stage.has-screen .brand-libera-mark{width:72%;justify-self:center}
+.brand-interface{display:block;width:100%;transform:rotate(-4deg);box-shadow:0 14px 28px #0003;transition:transform 1.1s cubic-bezier(.16,1,.3,1)}
+.brand-interface img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:contain}
+a:hover .brand-interface,a:focus-visible .brand-interface{transform:rotate(0deg) translateY(-3px)}
+@media(prefers-reduced-motion:reduce){.brand-interface{transition:none}a:hover .brand-interface,a:focus-visible .brand-interface{transform:rotate(-4deg)}}
+
+.skip:not(:focus){clip-path:inset(50%);width:1px;height:1px;padding:0;overflow:hidden;white-space:nowrap}
+h1[tabindex="-1"]:focus{outline:none}

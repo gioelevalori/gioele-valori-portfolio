@@ -259,3 +259,6 @@ The supplied iPhone reference supersedes the previous hero correction: the artwo
 
 ### Immersive project identities and content consistency
 Project previews use dedicated identity stages: original CookieMakers and Cali al Sole marks, and the original LiberaUI SVG mark, with a shared 16:10 ratio. Case studies retain uncropped desktop/mobile screens below the identity. Repeated study sections are consolidated into project, contribution and features. Language controls and Spazio backend status labels are consistent.
+
+### Recruiter verification and discovery
+Compact project stages combine the original mark with an uncropped interface inset. LiberaUI exposes its source alongside the live site; Spazio names its backend repository explicitly. Homepage is prerendered with browser-only enhancements guarded for SSR. Person, WebSite and WebPage metadata identify Gioele consistently without ranking promises.

@@ -4,7 +4,8 @@ import {ENGLISH} from '../src/translations.ts';
 const studies=JSON.parse(await readFile(new URL('../src/content/project-studies.json',import.meta.url),'utf8'));
 const output=new URL('../dist/portfolio/browser/',import.meta.url);
 const shell=await readFile(new URL('index.csr.html',output),'utf8');
-await writeFile(new URL('index.html',output),shell);
+const homepage=await readFile(new URL('index.html',output),'utf8');
+if(!homepage.includes('<app-home'))throw new Error('Missing prerendered homepage');
 const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 for(const language of ['it','en'])for(const[index,study]of studies.entries()){
  const project=PROJECTS.find(project=>project.slug===study.slug);if(!project)throw new Error('Missing project: '+study.slug);

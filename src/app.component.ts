@@ -1,9 +1,12 @@
+import { HOME_SCHEMA } from './home-schema';
 import { SpazioApiService, SpazioTask } from './spazio-api.service';
 import { ProjectSelectionService } from './project-selection.service';
 import { ScrollRevealDirective } from './scroll-reveal.directive';
 import { RouterLink } from '@angular/router';
 import { PROJECTS, SERVICES, GUARANTEES, JOBS, SKILLS } from './portfolio-data';
 import { ENGLISH } from './translations';
+import { isPlatformBrowser } from '@angular/common';
+import { PLATFORM_ID } from '@angular/core';
 import { AfterViewInit, ChangeDetectorRef, Component, computed, inject, HostListener, OnDestroy, signal } from '@angular/core';
 import { ProjectPreviewComponent } from './project-preview.component';
 
@@ -12,15 +15,16 @@ type DemoTask=SpazioTask;
 
 @Component({selector:'app-home',standalone:true,imports:[ProjectPreviewComponent,RouterLink,ScrollRevealDirective],templateUrl:'./app.component.html'})
 export class App implements AfterViewInit, OnDestroy {
+ private readonly browser=isPlatformBrowser(inject(PLATFORM_ID));
  galleryUrl(){return this.language()==='en'?'/en/projects/':'/progetti/';}
  studyUrl(index:number){return (this.language()==='en'?'/en/projects/':'/progetti/')+this.projects[index].slug+'/';}
- language=signal<'it'|'en'>(this.loadLanguage());
+ language=signal<'it'|'en'>('it');
  private loadLanguage():'it'|'en'{const requested=new URLSearchParams(location.search).get('lang');if(requested==='it'||requested==='en')return requested;try{return localStorage.getItem('gv-portfolio-language')==='en'?'en':'it';}catch{return 'it';}}
  setLanguage(language:'it'|'en'){if(language===this.language())return;this.transition(()=>this.applyLanguage(language));}
  private applyLanguage(language:'it'|'en'){this.language.set(language);const url=new URL(location.href);if(url.searchParams.has('lang')){url.searchParams.set('lang',language);history.replaceState(history.state,'',url);} try{localStorage.setItem('gv-portfolio-language',language);}catch{}this.updateLanguageMetadata();}
  private updateLanguageMetadata(){
    const english=this.language()==='en';
-   const title=english?'Gioele Valori — Full-Stack Developer | Websites & Web Apps':'Gioele Valori — Full-Stack Developer | Siti Web & Applicazioni su Misura';
+   const title=english?'Gioele Valori — Full-Stack Developer | Websites & Web Apps':'Gioele Valori — Sviluppatore Full Stack Angular e C#/.NET';
    const description=english?'Angular and C#/.NET full-stack developer. Professional experience and projects built from the client’s idea to the live website.':'Sviluppatore full-stack Angular e C#/.NET. Esperienza aziendale e progetti realizzati dall’idea del cliente al sito online.';
    document.documentElement.lang=this.language();document.title=title;
    for(const selector of ['meta[name="description"]','meta[property="og:description"]','meta[name="twitter:description"]'])document.querySelector(selector)?.setAttribute('content',description);
@@ -33,7 +37,7 @@ export class App implements AfterViewInit, OnDestroy {
    document.querySelector('meta[property="og:image:width"]')?.setAttribute('content','1200');document.querySelector('meta[property="og:image:height"]')?.setAttribute('content','630');
    document.querySelector('meta[property="og:image:alt"]')?.setAttribute('content','Gioele Valori — Angular e C#/.NET');
    document.querySelectorAll('link[rel="alternate"][hreflang]').forEach(el=>el.remove());
-   const structured=document.querySelector('script[type="application/ld+json"]');if(structured)structured.textContent=JSON.stringify({'@context':'https://schema.org','@type':'Person',name:'Gioele Valori',url:'https://gioelevalori.dev/',jobTitle:'Full-Stack Developer',sameAs:['https://www.linkedin.com/in/gioelevalori/']});
+   const structured=document.querySelector('script[type="application/ld+json"]');if(structured)structured.textContent=JSON.stringify(HOME_SCHEMA);
  }
 
  t(value:unknown):string{const text=value==null?'':String(value);if(this.language()==='it')return text;const exact=ENGLISH[text];if(exact!==undefined)return exact;for(const [it,en]of [['Attività aggiunta: ','Task added: '],['Elimina attività: ','Delete task: '],['Stato di ','Status of '],['Scadenza · ','Due · '],['Scopri ','Explore '],['Screenshot del sito ','Screenshot of '],['Un’anteprima del sito ','A preview of ']]){if(text.startsWith(it))return en+text.slice(it.length);}if(text.startsWith('Attività spostata in '))return 'Task moved to '+this.t(text.slice('Attività spostata in '.length,-1))+'.';return text;}
@@ -52,7 +56,7 @@ export class App implements AfterViewInit, OnDestroy {
  demoOpen=signal(false); projectView=signal<'demo'|'details'>('demo'); showTaskForm=signal(false);
  query=signal('');stateFilter=signal('Tutte');dragOver=signal('');demoMessage=signal('');storageAvailable=signal(true);
  private lastFocus: HTMLElement|null=null; private oldOverflow=''; private readonly storageKey='gv-spazio-demo-v1';
- demoTasks=signal<DemoTask[]>(this.loadDemo());
+ demoTasks=signal<DemoTask[]>(this.sampleTasks());
  filteredTasks=computed(()=>this.demoTasks().filter(task=>(this.stateFilter()==='Tutte'||task.state===this.stateFilter())&&[task.title,task.tag,(task.id.startsWith('sample-')||task.sample)?this.t(task.title):'',this.t(task.tag)].join(' ').toLocaleLowerCase('it').includes(this.query().trim().toLocaleLowerCase('it'))));
  inputValue(event:Event){return (event.target as HTMLInputElement).value;}
  tasksFor(state:TaskState){return this.filteredTasks().filter(task=>task.state===state);}
@@ -62,7 +66,7 @@ export class App implements AfterViewInit, OnDestroy {
  {id:'sample-3',title:'Sviluppare la bacheca',tag:'Frontend',state:'In corso',due:''},
  {id:'sample-4',title:'Definire i colori del progetto',tag:'Design',state:'Completate',due:''}
  ];}
- private loadDemo():DemoTask[]{try{const raw=localStorage.getItem(this.storageKey);if(!raw)return this.sampleTasks();const data:unknown=JSON.parse(raw);if(!Array.isArray(data)||data.length>200)throw Error('Invalid data');const valid=data.every(t=>t&&typeof t.id==='string'&&typeof t.title==='string'&&t.title.length>0&&t.title.length<=90&&typeof t.tag==='string'&&t.tag.length<=30&&['Da fare','In corso','Completate'].includes(t.state)&&typeof t.due==='string'&&(!t.due||/^\d{4}-\d{2}-\d{2}$/.test(t.due)));if(!valid||new Set(data.map(t=>t.id)).size!==data.length)throw Error('Invalid data');return data as DemoTask[];}catch{this.storageAvailable.set(false);return this.sampleTasks();}}
+ private loadDemo():DemoTask[]{if(!this.browser)return this.sampleTasks();try{const raw=localStorage.getItem(this.storageKey);if(!raw)return this.sampleTasks();const data:unknown=JSON.parse(raw);if(!Array.isArray(data)||data.length>200)throw Error('Invalid data');const valid=data.every(t=>t&&typeof t.id==='string'&&typeof t.title==='string'&&t.title.length>0&&t.title.length<=90&&typeof t.tag==='string'&&t.tag.length<=30&&['Da fare','In corso','Completate'].includes(t.state)&&typeof t.due==='string'&&(!t.due||/^\d{4}-\d{2}-\d{2}$/.test(t.due)));if(!valid||new Set(data.map(t=>t.id)).size!==data.length)throw Error('Invalid data');return data as DemoTask[];}catch{this.storageAvailable.set(false);return this.sampleTasks();}}
  private saveDemo(){try{localStorage.setItem(this.storageKey,JSON.stringify(this.demoTasks()));this.storageAvailable.set(true);}catch{this.storageAvailable.set(false);}}
  private transition(update:()=>void){const doc=document as Document & {startViewTransition?:(callback:()=>Promise<void>)=>{finished:Promise<void>;ready:Promise<void>;updateCallbackDone:Promise<void>}};if(doc.startViewTransition&&!matchMedia('(prefers-reduced-motion: reduce)').matches){const result=doc.startViewTransition(async()=>{update();this.cdr.detectChanges();});void result.finished.catch(()=>{});void result.ready.catch(()=>{});void result.updateCallbackDone.catch(()=>{});}else{update();this.cdr.detectChanges();if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.querySelector('.project:not([hidden])')?.animate([{opacity:.65,transform:'translateY(10px)'},{opacity:1,transform:'translateY(0)'}],{duration:650,easing:'cubic-bezier(.22,.61,.36,1)'});}}}
  openDemo(event?:Event){event?.preventDefault();if(this.demoOpen())return;this.lastFocus=document.activeElement as HTMLElement;this.oldOverflow=document.body.style.overflow;this.projectView.set('demo');this.transition(()=>this.showDemo());}
@@ -82,6 +86,10 @@ export class App implements AfterViewInit, OnDestroy {
 
  private frame=0;
  ngAfterViewInit(){
+   if(!this.browser)return;
+   this.language.set(this.loadLanguage());
+   this.demoTasks.set(this.loadDemo());
+   this.cdr.detectChanges();
    this.updateLanguageMetadata();
    void this.api.configure().then(()=>{if(this.api.connected())return this.apiAction(()=>this.api.list());return undefined;});
    this.updateScene();

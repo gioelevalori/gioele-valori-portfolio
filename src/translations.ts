@@ -1,4 +1,6 @@
 export const ENGLISH: Record<string, string> = {
+ 'Codice sorgente su GitHub':'Source code on GitHub',
+ 'Codice del backend su GitHub':'Backend source on GitHub',
  "Il cliente mi ha affidato l’idea; ho curato da solo progettazione e sviluppo. Ho costruito l’interfaccia con Angular e Angular Material e integrato Three.js per l’anteprima 3D.":"The client provided the idea; I handled the design and development independently. I built the interface with Angular and Angular Material and integrated Three.js for the 3D preview.",
  "Partendo dall’idea del cliente, ho curato da solo progettazione, sviluppo e configurazione WordPress. Ho organizzato contenuti e navigazione per rendere accessibili informazioni sulla gara, edizioni e contatti.":"Starting from the client’s idea, I independently handled design, development and WordPress configuration. I organised the content and navigation to make competition information, editions and contact details easy to find.",
  'Funzionalità':'Features',
