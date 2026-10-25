@@ -57,4 +57,4 @@ Misurazione finale con la libreria ufficiale web-vitals, Chrome locale 390×844 
 
 ## LiberaUI
 
-Il progetto open source LiberaUI è incluso nel catalogo e nei casi studio IT/EN. Descrizioni e funzionalità sono verificate sul sito pubblico e sul README di gioelevalori/ng-library; non è presentato come lavoro per un cliente. Le catture reali desktop/mobile hanno varianti PNG, AVIF e WebP con provenienza.
+Il progetto open source LiberaUI è incluso nel catalogo e nei casi studio IT/EN. Descrizioni e funzionalità sono verificate sul sito pubblico e sul README di gioelevalori/liberaui; non è presentato come lavoro per un cliente. Le catture reali desktop/mobile hanno varianti PNG, AVIF e WebP con provenienza.
