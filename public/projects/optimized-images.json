@@ -146,72 +146,72 @@
     {
       "target": "public/projects/libera-ui-480.avif",
       "width": 480,
-      "bytes": 8820
+      "bytes": 8857
     },
     {
       "target": "public/projects/libera-ui-480.webp",
       "width": 480,
-      "bytes": 12812
+      "bytes": 12836
     },
     {
       "target": "public/projects/libera-ui-960.avif",
       "width": 960,
-      "bytes": 28832
+      "bytes": 29056
     },
     {
       "target": "public/projects/libera-ui-960.webp",
       "width": 960,
-      "bytes": 39942
+      "bytes": 40036
     },
     {
       "target": "public/projects/libera-ui-1440.avif",
       "width": 1440,
-      "bytes": 53431
+      "bytes": 53364
     },
     {
       "target": "public/projects/libera-ui-1440.webp",
       "width": 1440,
-      "bytes": 73204
+      "bytes": 73030
     },
     {
       "target": "public/projects/libera-ui-2880.avif",
       "width": 2880,
-      "bytes": 121135
+      "bytes": 120619
     },
     {
       "target": "public/projects/libera-ui-2880.webp",
       "width": 2880,
-      "bytes": 184252
+      "bytes": 184014
     },
     {
       "target": "public/projects/libera-ui-mobile-195.avif",
       "width": 195,
-      "bytes": 7895
+      "bytes": 7750
     },
     {
       "target": "public/projects/libera-ui-mobile-195.webp",
       "width": 195,
-      "bytes": 12398
+      "bytes": 12212
     },
     {
       "target": "public/projects/libera-ui-mobile-390.avif",
       "width": 390,
-      "bytes": 26617
+      "bytes": 26360
     },
     {
       "target": "public/projects/libera-ui-mobile-390.webp",
       "width": 390,
-      "bytes": 35036
+      "bytes": 34402
     },
     {
       "target": "public/projects/libera-ui-mobile-780.avif",
       "width": 780,
-      "bytes": 58515
+      "bytes": 57300
     },
     {
       "target": "public/projects/libera-ui-mobile-780.webp",
       "width": 780,
-      "bytes": 87072
+      "bytes": 85238
     }
   ]
 }
