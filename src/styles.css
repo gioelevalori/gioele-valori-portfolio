@@ -418,3 +418,15 @@ a:hover .brand-interface,a:focus-visible .brand-interface{transform:rotate(0deg)
 
 .skip:not(:focus){clip-path:inset(50%);width:1px;height:1px;padding:0;overflow:hidden;white-space:nowrap}
 h1[tabindex="-1"]:focus{outline:none}
+
+/* Desktop reference: name, large code sculpture, then role in one row. */
+.desktop-identity{display:none}
+@media(min-width:1101px){
+ .intro-title-row{grid-template-columns:minmax(0,46fr) minmax(0,26fr) minmax(0,24fr);grid-template-areas:"name artwork role";grid-template-rows:auto;gap:2%}
+ .intro-title-row h1{align-self:center}
+ .intro-title-row .intro-signature{grid-area:artwork;width:90%;max-width:none;justify-self:center;align-self:center;margin:0;transform:rotate(-12deg)}
+ .intro-role{grid-area:role;align-self:center;padding:0 0 0 14px}
+ .intro-role .intro-scroll{margin-top:70px}
+ .identity .plain-identity{display:none}
+ .desktop-identity{display:block;font-size:42px;font-weight:450;line-height:1;letter-spacing:-.04em}
+}

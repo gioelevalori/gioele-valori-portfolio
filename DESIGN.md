@@ -262,3 +262,6 @@ Project previews use dedicated identity stages: original CookieMakers and Cali a
 
 ### Recruiter verification and discovery
 Compact project stages combine the original mark with an uncropped interface inset. LiberaUI exposes its source alongside the live site; Spazio names its backend repository explicitly. Homepage is prerendered with browser-only enhancements guarded for SSR. Person, WebSite and WebPage metadata identify Gioele consistently without ranking promises.
+
+### Desktop hero reference restored
+Above 1100px the hero uses one row: name left, enlarged code sculpture in the centre, role and discovery link right. The desktop header uses the supplied GV lettering reference. The approved mobile composition remains unchanged.
