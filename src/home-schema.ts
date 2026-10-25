@@ -7,7 +7,7 @@ export const HOME_SCHEMA={
       "name": "Gioele Valori",
       "url": "https://gioelevalori.dev/",
       "jobTitle": "Full-Stack Developer",
-      "description": "Sviluppatore full-stack Angular e C#/.NET a Penne, Italia.",
+      "description": "Sviluppatore full-stack Angular, C#/.NET e Python a Penne, Italia.",
       "sameAs": [
         "https://www.linkedin.com/in/gioelevalori/",
         "https://github.com/gioelevalori"
@@ -18,6 +18,7 @@ export const HOME_SCHEMA={
         "C#",
         "ASP.NET Core",
         "PostgreSQL",
+      "Python",
         "Sviluppo web"
       ],
       "homeLocation": {
@@ -42,7 +43,7 @@ export const HOME_SCHEMA={
       "@type": "WebPage",
       "@id": "https://gioelevalori.dev/#webpage",
       "url": "https://gioelevalori.dev/",
-      "name": "Gioele Valori — Sviluppatore Full Stack Angular e C#/.NET",
+      "name": "Gioele Valori — Sviluppatore Full Stack Angular, C#/.NET e Python",
       "isPartOf": {
         "@id": "https://gioelevalori.dev/#website"
       },

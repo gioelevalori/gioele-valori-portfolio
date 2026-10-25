@@ -24,8 +24,8 @@ export class App implements AfterViewInit, OnDestroy {
  private applyLanguage(language:'it'|'en'){this.language.set(language);const url=new URL(location.href);if(url.searchParams.has('lang')){url.searchParams.set('lang',language);history.replaceState(history.state,'',url);} try{localStorage.setItem('gv-portfolio-language',language);}catch{}this.updateLanguageMetadata();}
  private updateLanguageMetadata(){
    const english=this.language()==='en';
-   const title=english?'Gioele Valori — Full-Stack Developer | Websites & Web Apps':'Gioele Valori — Sviluppatore Full Stack Angular e C#/.NET';
-   const description=english?'Angular and C#/.NET full-stack developer. Professional experience and projects built from the client’s idea to the live website.':'Sviluppatore full-stack Angular e C#/.NET. Esperienza aziendale e progetti realizzati dall’idea del cliente al sito online.';
+   const title=english?'Gioele Valori — Full-Stack Developer | Websites & Web Apps':'Gioele Valori — Sviluppatore Full Stack Angular, C#/.NET e Python';
+   const description=english?'Angular, C#/.NET and Python full-stack developer. Professional experience and projects built from the client’s idea to the live website.':'Sviluppatore full-stack Angular, C#/.NET e Python. Esperienza aziendale e progetti realizzati dall’idea del cliente al sito online.';
    document.documentElement.lang=this.language();document.title=title;
    for(const selector of ['meta[name="description"]','meta[property="og:description"]','meta[name="twitter:description"]'])document.querySelector(selector)?.setAttribute('content',description);
    for(const selector of ['meta[property="og:title"]','meta[name="twitter:title"]'])document.querySelector(selector)?.setAttribute('content',title);
@@ -35,7 +35,7 @@ export class App implements AfterViewInit, OnDestroy {
    for(const selector of ['meta[property="og:image"]','meta[name="twitter:image"]'])document.querySelector(selector)?.setAttribute('content','https://gioelevalori.dev/social-card.png');
    document.querySelector('meta[property="og:type"]')?.setAttribute('content','website');
    document.querySelector('meta[property="og:image:width"]')?.setAttribute('content','1200');document.querySelector('meta[property="og:image:height"]')?.setAttribute('content','630');
-   document.querySelector('meta[property="og:image:alt"]')?.setAttribute('content','Gioele Valori — Angular e C#/.NET');
+   document.querySelector('meta[property="og:image:alt"]')?.setAttribute('content','Gioele Valori — Angular, C#/.NET e Python');
    document.querySelectorAll('link[rel="alternate"][hreflang]').forEach(el=>el.remove());
    const structured=document.querySelector('script[type="application/ld+json"]');if(structured)structured.textContent=JSON.stringify(HOME_SCHEMA);
  }
