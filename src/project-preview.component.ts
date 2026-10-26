@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 
 @Component({selector:'app-project-preview',standalone:true,template:`
-<span class="brand-stage" [class.brand-cookie]="name==='CookieMakers'" [class.brand-cali]="name==='Cali al Sole'" [class.brand-libera]="name==='LiberaUI'" [class.has-screen]="!wide">
- @if(name==='CookieMakers'){<img class="brand-mark" src="projects/cookiemakers-mark.webp" alt="My Cookie Delight" width="828" height="293" [loading]="eager?'eager':'lazy'">}
+<span class="brand-stage" [class.brand-cookie]="name==='My cookie delight'" [class.brand-cali]="name==='Cali al Sole'" [class.brand-libera]="name==='LiberaUI'" [class.has-screen]="!wide">
+ @if(name==='My cookie delight'){<img class="brand-mark" src="projects/cookiemakers-mark.webp" alt="My Cookie Delight" width="828" height="293" [loading]="eager?'eager':'lazy'">}
  @else if(name==='Cali al Sole'){<img class="brand-mark" src="projects/cali-al-sole-logo.png" alt="Cali al Sole" width="600" height="600" [loading]="eager?'eager':'lazy'">}
  @else if(name==='LiberaUI'){<img class="brand-mark brand-libera-mark" src="projects/liberaui-mark.svg" alt="LiberaUI" width="32" height="32">}
  @else{<span class="brand-wordmark">{{name}}<span class="brand-period">.</span></span>}

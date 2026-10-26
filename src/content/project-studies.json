@@ -1,7 +1,7 @@
 [
   {
     "slug": "cookiemakers",
-    "name": "CookieMakers",
+    "name": "My cookie delight",
     "subtitle": "Un’idea da personalizzare, prima ancora di ordinarla.",
     "problem": "Permettere al cliente di vedere come sarà un biscotto personalizzato, prima di proseguire con la richiesta.",
     "approach": "Un configuratore Angular collega forma, dedica, immagini e colori a un’anteprima Three.js. Galleria, eventi e carrello fanno parte dello stesso percorso.",
